@@ -69,7 +69,7 @@ switch($accion)
             //imprimimos
        $tHTML .=    '<tr>'.
                     '<td>'.$clNav->menuEmergenteJSON($rConsulta{'eCodCamioneta'},'cata-cam-con',$arrEstados).'</td>'.
-                    '<td align="center"><i class="'.$rConsulta{'tIcono'}.'"></i></td>'.
+                    '<td align="center"><i class="'.$rConsulta{'estatus'}.'"></i></td>'.
 			        '<td>'.utf8_decode($rConsulta{'tNombre'}).'</td>'.
                     '</tr>';
             //imprimimos

@@ -115,7 +115,7 @@ class clSis
 					ssp.eCodPerfil = ".$_SESSION['sessionAdmin']['eCodPerfil']).
                     " ORDER BY ss.ePosicion ASC";
             
-            print $select;
+            
 
 		        $rsMenus = mysqli_query($this->conexion,$select);
             

@@ -7,12 +7,6 @@
 
 
 
-
-
-include("../inc/cot-clc.php");
-
-
-$clSistema = new clSis();
 session_start();
 
 $bAll = $clSistema->validarPermiso($_GET['tCodSeccion']);

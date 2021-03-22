@@ -103,8 +103,7 @@ class clSis
 						ss.tCodSeccion,
 						ss.tTitulo,
 						ss.tIcono,
-                        ss.ePosicion,
-                        ss.bSesion
+                        ss.ePosicion
 					FROM SisSecciones ss".
 					($_SESSION['sessionAdmin']['bAll'] ? "" : " INNER JOIN SisSeccionesPerfiles ssp ON ssp.tCodSeccion = ss.tCodSeccion").
 					" WHERE

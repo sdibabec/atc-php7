@@ -98,7 +98,7 @@ switch($accion)
        $tHTML .=    '<tr>'.
                     '<td>'.$clNav->menuEmergenteJSON($rConsulta{'eCodUsuario'},'cata-usr-sis').'</td>'.
                     '<td><i class="'.$rConsulta{'estatus'}.'"></i></td>'.
-                    '<td>'.($rConsulta{'tNombre'}.' '.$rConsulta{'tApellidos'}).'</td>'.
+                    '<td>'.utf8_decode($rConsulta{'tNombre'}.' '.$rConsulta{'tApellidos'}).'</td>'.
                     '<td>'.($rConsulta{'tCorreo'}).'</td>'.
                     '<td>'.($rConsulta{'tPerfil'}).'</td>'.
                     

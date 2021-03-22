@@ -49,9 +49,9 @@ switch($accion)
         $tHTML =  '<table class="table table-hover" width="100%">'.
         '<thead>'.
         '<tr>'.
-        '<th class="text-right">Codigo</th>'.
-        '<th class="text-right">E</th>'.
-        '<th class="text-right">Nombre</th>'.
+        '<th>Codigo</th>'.
+        '<th>E</th>'.
+        '<th>Nombre</th>'.
 		'</tr>'.
         '</thead>'.
         '<tbody>';

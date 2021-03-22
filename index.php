@@ -429,11 +429,11 @@ else
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           
         </div>
-        <div class="modal-body" id="detPaquete">
+        <div class="modal-body" id="detPaquete" style="max-height:500px; overflow-y: scroll;">
           
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
         </div>
       </div>
       

@@ -452,7 +452,7 @@ $horas[] = array('23:30','23:30 - 04:30');
             source: function( request, response ) {
                 
                 $.ajax({
-                    url: "/que/json-inventario.php",
+                    url: "/que/json-inventario/",
                     type: 'get',
                     dataType: "json",
                     data: {
@@ -500,7 +500,7 @@ $horas[] = array('23:30','23:30 - 04:30');
             source: function( request, response ) {
                 
                 $.ajax({
-                    url: "/que/json-paquetes.php",
+                    url: "/que/json-paquetes/",
                     type: 'get',
                     dataType: "json",
                     data: {

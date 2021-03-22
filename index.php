@@ -1216,7 +1216,7 @@ else
           
           $.ajax({
               type: "POST",
-              url: "/que/buscar-subclasificaciones.php",
+              url: "/que/buscar-subclasificaciones/",
               data: jsonString,
               contentType: "application/json; charset=utf-8",
               dataType: "json",
@@ -1273,7 +1273,7 @@ else
             source: function( request, response ) {
                 
                 $.ajax({
-                    url: "/que/buscar-clientes-cotizaciones.php",
+                    url: "/que/buscar-clientes-cotizaciones/",
                     type: 'get',
                     dataType: "json",
                     data: {
@@ -1315,7 +1315,7 @@ else
             source: function( request, response ) {
                 
                 $.ajax({
-                    url: "/que/json-paquetes.php",
+                    url: "/que/json-paquetes/",
                     type: 'get',
                     dataType: "json",
                     data: {
@@ -1426,7 +1426,7 @@ else
             source: function( request, response ) {
                 
                 $.ajax({
-                    url: "/que/json-inventario.php",
+                    url: "/que/json-inventario/",
                     type: 'get',
                     dataType: "json",
                     data: {
@@ -1592,7 +1592,7 @@ else
             source: function( request, response ) {
                 
                 $.ajax({
-                    url: "/que/json-secciones.php",
+                    url: "/que/json-secciones/",
                     type: 'get',
                     dataType: "json",
                     data: {

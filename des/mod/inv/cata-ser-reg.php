@@ -72,7 +72,7 @@ var eHoras = document.getElementById("eHoras");
             source: function( request, response ) {
                 
                 $.ajax({
-                    url: "/que/json-inventario.php",
+                    url: "/que/json-inventario/",
                     type: 'get',
                     dataType: "json",
                     data: {

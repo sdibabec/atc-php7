@@ -356,7 +356,7 @@ class clSis
     
     public function generarUrl($seccion)
     {
-        $base = explode('-',$seccion);
+        /*$base = explode('-',$seccion);
         $tAccion = $base[2];
         $tTipo = $base[0];
         $tSeccion = $base[1];
@@ -368,7 +368,7 @@ class clSis
         $rTipo = mysqli_fetch_array(mysqli_query($this->conexion,$select));
         
         $select = "SELECT tNombre FROM SisSeccionesReemplazos WHERE tBase = '".$tSeccion."'";
-        $rSeccion = mysqli_fetch_array(mysqli_query($this->conexion,$select));
+        $rSeccion = mysqli_fetch_array(mysqli_query($this->conexion,$select));*/
         
         $select = "SELECT * FROM SisSecciones WHERE tCodSeccion = '$seccion'";
         $rsUrlSeccion = mysqli_query($this->conexion,$select);

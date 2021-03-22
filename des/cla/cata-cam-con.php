@@ -33,7 +33,7 @@ $fhFechaFin = $data->fhFechaConsulta2 ? explode("/",$data->fhFechaConsulta2) : $
 $fhFecha1 = $fhFechaInicio[2].'-'.$fhFechaInicio[1].'-'.$fhFechaInicio[0];
 $fhFecha2 = $data->fhFechaConsulta2 ? $fhFechaFin[2].'-'.$fhFechaFin[1].'-'.$fhFechaFin[0] : $fhFecha1;
 
-$eLimit = $data->eMaxRegistros;
+$eLimit = $data->eMaxRegistros ? $data->eMaxRegistros : 100;
 $bOrden = $data->rOrden;
 $rdOrden = $data->rdOrden ? $data->rdOrden : 'eCodCamioneta';
 

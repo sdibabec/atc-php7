@@ -9,6 +9,10 @@ $bAll = $_SESSION['bAll'];
 $bDelete = $_SESSION['bDelete'];
 $select = " SELECT DISTINCT eCodEstatus,tNombre tEstatus FROM CatEstatus WHERE tCodEstatus IN (SELECT DISTINCT tCodEstatus FROM CatCamionetas)";
 $rsEstatus = mysqli_query($conexion,$select);
+
+$select = "SELECT * FROM SisMaximosRegistros ORDER BY eRegistros ASC";
+$rsMaximos = mysql_query($select);
+
 ?>
 <script>
     $(document).ready(function() {

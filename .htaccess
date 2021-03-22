@@ -23,6 +23,7 @@ RewriteRule ^(login|logout)\/$ $1.php
 #RewriteRule ^(que|auc|cla|inc)\/([a-zA-Z\-]+)$ des/$1/$2.php
 RewriteRule ^(que|auc)\/([a-zA-Z\-]+)\/$ des/$1/$2.php
 RewriteRule ^(cla|ana|con)\/([a-zA-Z\-]+)\/$ des/pla/mod.php?tTipoRecurso=$1&tRecurso=$2
+RewriteRule ^(con)\/([a-zA-Z\-]+)\/$ des/pla/mod.php?tTipoRecurso=$1&tRecurso=$2
 
 RewriteRule ^(detalle|pruebas)\/(v1)\/([0-9]+)\/$ $1.php?v1=$3
 

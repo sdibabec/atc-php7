@@ -559,7 +559,7 @@ else
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           
         </div>
-        <form method="post" action="<?=$clSistema->obtenerURL();?>xls/<?=$_GET['tCodSeccion']?>/" target="_blank">
+        <form method="post" action="<?=$clNav->obtenerURL();?>xls/<?=$_GET['tCodSeccion']?>/" target="_blank">
           <div class="modal-body">
               <label>Selecciona el mes</label>
          <select class="form-control" id="eMes" name="eMes">
@@ -1228,7 +1228,7 @@ else
         {
             if(tipo=="cotizacion")
             {
-                window.open('<?=$clSistema->obtenerURL();?>crear/pdf/cotizacion/<?=$_GET['v1'];?>/', '_blank');
+                window.open('<?=$clNav->obtenerURL();?>crear/pdf/cotizacion/<?=$_GET['v1'];?>/', '_blank');
             }
         }
             
@@ -1239,20 +1239,20 @@ else
             
         function generarArchivo(tipo)
         {  
-                window.open('<?=$clSistema->obtenerURL();?>'+tipo+'/<?=$_GET['tCodSeccion'];?>/<?=(($_GET['v1']) ? 'v1/'.$_GET['v1'].'/' : '');?>', '_blank');
+                window.open('<?=$clNav->obtenerURL();?>'+tipo+'/<?=$_GET['tCodSeccion'];?>/<?=(($_GET['v1']) ? 'v1/'.$_GET['v1'].'/' : '');?>', '_blank');
         }
         
         function generarPDF(codigo)
         {
             
-                window.open('<?=$clSistema->obtenerURL();?>crear/pdf/cotizacion/'+codigo+'/', '_blank');
+                window.open('<?=$clNav->obtenerURL();?>crear/pdf/cotizacion/'+codigo+'/', '_blank');
             
         }
         
         function generarMaestra(codigo)
         {
             
-                window.open('<?=$clSistema->obtenerURL();?>crear/pdf/maestra/'+codigo+'/', '_blank');
+                window.open('<?=$clNav->obtenerURL();?>crear/pdf/maestra/'+codigo+'/', '_blank');
             
         }
         

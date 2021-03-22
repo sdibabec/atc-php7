@@ -9,7 +9,7 @@ $errores = array();
 /*Preparacion de variables*/
 $bAplicar = false;
 
-$codigo = $data->eCodAccion ? $data->eCodAccion : $data->eCodUsuario;
+$codigo = $data->eCodAccion ? $data->eCodAccion : $data->eAccion;
 $accion = $data->tCodAccion ? $data->tCodAccion : $data->tAccion;
 
 $eCodUsuario = $data->eCodUsuario ? $data->eCodUsuario : false;
@@ -136,7 +136,7 @@ switch($accion)
 
         if(!$rs)
         {
-            $errores[] = 'Error al efectuar la operacion '.$insert.' - '.mysql_error($conexion);
+            $errores[] = 'Error al efectuar la operacion '.mysql_error($conexion);
         }
         else
         {

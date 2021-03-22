@@ -1,0 +1,4 @@
+[01-Jan-2021 19:09:03 America/Boise] PHP Deprecated:  mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead in /home3/diariosm/public_html/dominios/babec/sate/cnx/swgc-mysql.php on line 7
+[01-Jan-2021 19:09:03 America/Boise] PHP Warning:  mktime() expects parameter 4 to be long, string given in /home3/diariosm/public_html/dominios/babec/sate/inc/inc-cal.php on line 45
+[01-Jan-2021 19:11:31 America/Boise] PHP Deprecated:  mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead in /home3/diariosm/public_html/dominios/babec/sate/cnx/swgc-mysql.php on line 7
+[01-Jan-2021 19:11:31 America/Boise] PHP Warning:  mktime() expects parameter 4 to be long, string given in /home3/diariosm/public_html/dominios/babec/sate/inc/cal-cot.php on line 47

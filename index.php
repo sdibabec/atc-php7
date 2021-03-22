@@ -12,6 +12,10 @@ $clSistema = new clSis();
 $clNav = new clNav();
 session_start();
 
+print '<pre>';
+print_r($_SESSION);
+print '</pre>';
+
 $_SESSION['sesionNavegacion'] = array();
 
 date_default_timezone_set('America/Mexico_City');

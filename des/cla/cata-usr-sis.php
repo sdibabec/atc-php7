@@ -136,7 +136,7 @@ switch($accion)
 
         if(!$rs)
         {
-            $errores[] = 'Error al efectuar la operacion '.mysql_error($conexion);
+            $errores[] = 'Error al efectuar la operacion '.$insert.' - '.mysql_error($conexion);
         }
         else
         {

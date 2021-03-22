@@ -9,7 +9,7 @@
 
 session_start();
 
-$bAll = $clSistema->validarPermiso($_GET['tCodSeccion']);
+$bAll = $_SESSION['bAll'];
 
 
 date_default_timezone_set('America/Mexico_City');

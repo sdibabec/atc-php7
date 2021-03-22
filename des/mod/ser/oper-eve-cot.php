@@ -73,7 +73,7 @@ $horas[] = array('23:30','23:30 - 04:30');
 <div class="col-lg-12">
                <div class="row">
 
-    <form id="datos" name="datos" action="<?=$_SERVER['REQUEST_URI']?>" method="post" enctype="multipart/form-data">
+    <form id="datos" name="datos" action="<?=$_SERVER['REQUEST_URI']?>" method="post" enctype="multipart/form-data" class="col-lg-12">
         <input type="hidden" name="eCodEvento" id="eCodEvento" value="<?=$_GET['v1']?>">
         <input type="hidden" name="nvaFecha" id="nvaFecha">
         <input type="hidden" name="eCodTipoDocumento" value="1">
@@ -81,7 +81,7 @@ $horas[] = array('23:30','23:30 - 04:30');
         
         <input type="hidden" name="eCodPaquete" id="eCodPaquete">
         <!--tabs-->
-        <ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
+        <ul class="nav nav-tabs md-tabs" role="tablist">
     <li class="nav-item">
         <a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#tab-content-0">
             <span>Datos Principales</span>

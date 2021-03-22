@@ -81,7 +81,7 @@ $horas[] = array('23:30','23:30 - 04:30');
         
         <input type="hidden" name="eCodPaquete" id="eCodPaquete">
         <!--tabs-->
-        <ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
+        <ul class="nav nav-tabs md-tabs" role="tablist">
     <li class="nav-item">
         <a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#tab-content-0">
             <span>Datos Principales</span>

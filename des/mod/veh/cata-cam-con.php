@@ -11,7 +11,7 @@ $select = " SELECT DISTINCT eCodEstatus,tNombre tEstatus FROM CatEstatus WHERE t
 $rsEstatus = mysqli_query($conexion,$select);
 
 $select = "SELECT * FROM SisMaximosRegistros ORDER BY eRegistros ASC";
-$rsMaximos = mysql_query($select);
+$rsMaximos = mysqli_query($conexion,$select);
 
 ?>
 <script>

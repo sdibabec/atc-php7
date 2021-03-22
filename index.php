@@ -852,7 +852,7 @@ else
           
           $.ajax({
               type: "POST",
-              url: "/cla/cons-deta.php",
+              url: "/cla/cons-deta/",
               data: jsonString,
               contentType: "application/json; charset=utf-8",
               dataType: "json",
@@ -884,7 +884,7 @@ else
           
           $.ajax({
               type: "POST",
-              url: "/cla/deta-reg.php",
+              url: "/cla/deta-reg/",
               data: jsonString,
               contentType: "application/json; charset=utf-8",
               dataType: "json",
@@ -909,7 +909,7 @@ else
           
           $.ajax({
               type: "POST",
-              url: "/cla/nva-tran.php",
+              url: "/cla/nva-tran/",
               data: jsonString,
               contentType: "application/json; charset=utf-8",
               dataType: "json",
@@ -956,7 +956,7 @@ else
           
           $.ajax({
               type: "POST",
-              url: "/cla/nva-oper.php",
+              url: "/cla/nva-oper/",
               data: jsonString,
               contentType: "application/json; charset=utf-8",
               dataType: "json",
@@ -1153,7 +1153,7 @@ else
           
           $.ajax({
               type: "POST",
-              url: "/cla/reg-carga-eve.php",
+              url: "/cla/reg-carga-eve/",
               data: jsonString,
               contentType: "application/json; charset=utf-8",
               dataType: "json",
@@ -1392,7 +1392,7 @@ else
               //lanzamos
                 $.ajax({
                   type: "POST",
-                  url: "/cla/con-paq.php",
+                  url: "/cla/con-paq/",
                   data: jsonString,
                   contentType: "application/json; charset=utf-8",
                   dataType: "json",

@@ -57,7 +57,7 @@ switch($accion)
         '<tbody>';
         /* hacemos select */
         $select = "SELECT * FROM (SELECT cc.*, ce.tIcono estatus FROM CatCamionetas cc INNER JOIN CatEstatus ce ON ce.tCodEstatus=cc.tCodEstatus  WHERE 1=1 ".
-		($eCodCamioneta ? " AND be.eCodCamioneta = $eCodCamioneta" : "").
+		($eCodCamioneta ? " AND cc.eCodCamioneta = $eCodCamioneta" : "").
         ($eCodEstatus ? " AND ce.eCodEstatus = $eCodEstatus" : "").
         " ORDER BY cc.eCodCamioneta ASC ".
         " LIMIT 0, $eLimit ".

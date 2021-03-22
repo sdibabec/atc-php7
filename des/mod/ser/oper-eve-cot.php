@@ -70,7 +70,8 @@ $horas[] = array('23:30','23:30 - 04:30');
 
 ?>
 
-
+<div class="col-lg-12">
+               <div class="row">
 
     <form id="datos" name="datos" action="<?=$_SERVER['REQUEST_URI']?>" method="post" enctype="multipart/form-data">
         <input type="hidden" name="eCodEvento" id="eCodEvento" value="<?=$_GET['v1']?>">
@@ -427,6 +428,8 @@ $horas[] = array('23:30','23:30 - 04:30');
         <input type="hidden" name="eFilas" id="eFilas" value="<?=$i?>">
         <input type="hidden" id="dTotalImportes" value="0">
     </form>
+    
+    </div></div>
    
 <script>
     

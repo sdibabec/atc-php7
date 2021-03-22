@@ -70,9 +70,10 @@ $horas[] = array('23:30','23:30 - 04:30');
 
 ?>
 
+<div class="col-lg-12">
+               <div class="row">
 
-
-    <form id="datos" name="datos" action="<?=$_SERVER['REQUEST_URI']?>" method="post" enctype="multipart/form-data">
+    <form id="datos" name="datos" action="<?=$_SERVER['REQUEST_URI']?>" method="post" enctype="multipart/form-data" class="col-lg-12">
         <input type="hidden" name="eCodEvento" id="eCodEvento" value="<?=$_GET['v1']?>">
         <input type="hidden" name="nvaFecha" id="nvaFecha">
         <input type="hidden" name="eCodTipoDocumento" value="2">
@@ -426,6 +427,8 @@ $horas[] = array('23:30','23:30 - 04:30');
         <!--tabs-->
         <input type="hidden" name="eFilas" id="eFilas" value="<?=$i?>">
     </form>
+</div>
+</div>
    
 <script>
     

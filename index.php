@@ -767,7 +767,7 @@ else
           
           $.ajax({
               type: "POST",
-              url: "/inc/inc-cal.php",
+              url: "/des/inc/inc-cal.php",
               data: jsonString,
               contentType: "application/json; charset=utf-8",
               dataType: "json",
@@ -1105,7 +1105,7 @@ else
           
           $.ajax({
               type: "POST",
-              url: "/inc/cal-cot.php",
+              url: "/des/inc/cal-cot.php",
               data: jsonString,
               contentType: "application/json; charset=utf-8",
               dataType: "json",

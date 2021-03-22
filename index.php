@@ -75,6 +75,8 @@ else
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/Base/jquery-ui.css">
     
+    <link href="/assets/css/calendario.css" rel="stylesheet" media="all">
+    
     
     <!--javascripts-->
     <!-- Required Jquery -->

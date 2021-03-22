@@ -1,11 +1,11 @@
 <?php
-include("../cnx/swgc-mysql.php");
+
 
 
 date_default_timezone_set('America/America/Mexico_City');
 
 
-	function calcularInventario($eCodInventario,$fhFecha)
+	function calcularInventario($conexion,$eCodInventario,$fhFecha)
 	{
 		$ePiezas = 0;
 		
@@ -28,7 +28,7 @@ date_default_timezone_set('America/America/Mexico_City');
     
 //floor(number) returns the nearest DOWN of a number
 
-	function  calcularPaquete($eCodServicio,$fhFecha)
+	function  calcularPaquete($conexion,$eCodServicio,$fhFecha)
 	{
 		$eCantidad = 0;
 		

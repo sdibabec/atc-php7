@@ -51,7 +51,7 @@ $select = 	" SELECT  ".
 		$rsProductos = mysqli_query($conexion,$select);
 		while($rProducto = mysqli_fetch_array($rsProductos))
 		{
-            $eDisponibles = calcularInventario($rProducto{'eCodInventario'},$fhFechaConsulta);
+            $eDisponibles = calcularInventario($conexion,$rProducto{'eCodInventario'},$fhFechaConsulta);
             
             $clase = ($eDisponibles < $rProducto{'ePiezasPaquete'}) ? 'class="status--denied"' :  '';
             

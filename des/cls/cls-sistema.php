@@ -62,6 +62,10 @@ class clSis
             $rInicio = mysqli_fetch_array(mysqli_query($this->conexion,"SELECT * FROM SisSeccionesPerfilesInicio WHERE eCodPerfil = ".$rUsuario{'eCodPerfil'}));
             $url = base64_encode($this->generarUrl($rInicio{'tCodSeccion'}));
             
+            $pf = fopen("logInicio.txt","w");
+            fwrite($pf,$this->generarUrl($rInicio{'tCodSeccion'}));
+            fclose($pf);
+            
             mysqli_query($this->conexion,"INSERT INTO SisUsuariosAccesos (eCodUsuario, fhFecha) VALUES (".$rUsuario{'eCodUsuario'}.",'".date('Y-m-d H:i:s')."')");
             
             if($rUsuario{'eCodPerfil'}==4)

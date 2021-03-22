@@ -1349,7 +1349,7 @@ else
               //lanzamos
                 $.ajax({
                   type: "POST",
-                  url: "/con/cata-"+tipo+"-con.php",
+                  url: "/des/con/cata-"+tipo+"-con.php",
                   data: jsonString,
                   contentType: "application/json; charset=utf-8",
                   dataType: "json",

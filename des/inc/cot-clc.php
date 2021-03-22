@@ -47,7 +47,7 @@ date_default_timezone_set('America/America/Mexico_City');
 		while($rProducto = mysqli_fetch_array($rsProductos))
 		{
            
-            $eTotal = ($fhFecha ? calcularInventario($rProducto{'eCodInventario'},$fhFecha) : (int)$rProducto{'ePiezasInventario'}) / (int)$rProducto{'ePiezasPaquete'};
+            $eTotal = ($fhFecha ? calcularInventario($conexion,$rProducto{'eCodInventario'},$fhFecha) : (int)$rProducto{'ePiezasInventario'}) / (int)$rProducto{'ePiezasPaquete'};
             $eTotal = floor($eTotal);
 			$eCantidades[] = $eTotal;
 		}

@@ -5,6 +5,7 @@ ini_set('display_startup_errors', 0);
 
 require_once("./des/cls/cls-sistema.php");
 require_once("./des/cls/cls-nav.php");
+include("./des/inc/cot-clc.php");
 
 
 

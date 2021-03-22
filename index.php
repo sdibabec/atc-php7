@@ -307,7 +307,7 @@ else
                                            <?
                                            $fichero = './des/mod/'.$_GET['tDirectorio'].'/'.$_GET['tCodSeccion'].'.php';
             
-            mysqli_query($conexion,"INSERT INTO SisUsuariosSeccionesAccesos (eCodUsuario, tCodSeccion,  fhFecha) VALUES (".$_SESSION['sessionAdmin']['eCodUsuario'].",'".$_GET['tCodSeccion']."','".date('Y-m-d H:i:s')."')");
+            mysqli_query($conexion,$conexion,"INSERT INTO SisUsuariosSeccionesAccesos (eCodUsuario, tCodSeccion,  fhFecha) VALUES (".$_SESSION['sessionAdmin']['eCodUsuario'].",'".$_GET['tCodSeccion']."','".date('Y-m-d H:i:s')."')");
 			//echo ($fichero);
 			include($fichero);
                                            ?>
@@ -351,8 +351,8 @@ else
               <select name="eCodTipoPago" id="eCodTipoPago">
                 <?
     $select = "SELECT * FROM CatTiposPagos ORDER BY tNombre ASC";
-                                        $rsTiposPagos = mysql_query($select);
-                                        while($rTipoPago = mysql_fetch_array($rsTiposPagos))
+                                        $rsTiposPagos = mysqli_query($conexion,$select);
+                                        while($rTipoPago = mysqli_fetch_array($rsTiposPagos))
                                         {
                                             ?>
                   <option value="<?=$rTipoPago{'eCodTipoPago'}?>"><?=utf8_encode($rTipoPago{'tNombre'});?></option>
@@ -395,8 +395,8 @@ else
               <option value="">Seleccione...</option>
              <?php 
                 $select = "SELECT * FROM CatCamionetas WHERE tCodEstatus = 'AC' ORDER BY eCodCamioneta ASC";
-                $rsCamionetas = mysql_query($select);
-                while($rCamioneta = mysql_fetch_array($rsCamionetas)) { ?>
+                $rsCamionetas = mysqli_query($conexion,$select);
+                while($rCamioneta = mysqli_fetch_array($rsCamionetas)) { ?>
              <option value="<?=$rCamioneta{'eCodCamioneta'};?>"><?=$rCamioneta{'tNombre'};?></option>
              <? } ?>
               </select>

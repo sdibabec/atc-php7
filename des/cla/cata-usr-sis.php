@@ -1,14 +1,4 @@
-
-
-
-
-
 <?php
-
-
-
-
-
 
 session_start();
 
@@ -93,24 +83,24 @@ switch($accion)
 										($eCodUsuario ?  " AND cc.eCodUsuario =  ".$eCodUsuario : "").
             " LIMIT 0, $eLimit ";
         
-        $eFilas = mysqli_num_rows(mysqli_query($conexion,$conexion,$select1));
+        $eFilas = mysqli_num_rows(mysqli_query($conexion,$select1));
         
         $ePaginas = round($eFilas / 15);
         
         $select = "SELECT * FROM ($select1) N0 ORDER BY $rdOrden $bOrden LIMIT $eInicio, $eTermino";
         
-        $rsConsulta = mysqli_query($conexion,$conexion,$select);
+        $rsConsulta = mysqli_query($conexion,$select);
         while($rConsulta=mysqli_fetch_array($rsConsulta)){
          /* validamos si est獺 cargado */
            
             
             //imprimimos
        $tHTML .=    '<tr>'.
-                    '<td>'.$clNav->$clNav->menuEmergenteJSON($rConsulta{'eCodUsuario'},'cata-usr-sis').'</td>'.
+                    '<td>'.$clNav->menuEmergenteJSON($rConsulta{'eCodUsuario'},'cata-usr-sis').'</td>'.
                     '<td><i class="'.$rConsulta{'estatus'}.'"></i></td>'.
-                    '<td>'.utf8_decode($rConsulta{'tNombre'}.' '.$rConsulta{'tApellidos'}).'</td>'.
-                    '<td>'.utf8_encode($rConsulta{'tCorreo'}).'</td>'.
-                    '<td>'.utf8_encode($rConsulta{'tPerfil'}).'</td>'.
+                    '<td>'.($rConsulta{'tNombre'}.' '.$rConsulta{'tApellidos'}).'</td>'.
+                    '<td>'.($rConsulta{'tCorreo'}).'</td>'.
+                    '<td>'.($rConsulta{'tPerfil'}).'</td>'.
                     
                     '</tr>';
             //imprimimos
@@ -142,16 +132,16 @@ switch($accion)
         
  if(!sizeof($errores) && ($accion=="D" || $accion=="F"))
 {       
-        $rs = mysqli_query($conexion,$conexion,$insert);
+        $rs = mysqli_query($conexion,$insert);
 
         if(!$rs)
         {
-            $errores[] = 'Error al efectuar la operacion '.mysqli_error($conexion);
+            $errores[] = 'Error al efectuar la operacion '.mysql_error();
         }
         else
         {
             if($bBorrar)
-             { mysqli_query($conexion,$conexion,"DELETE FROM BitNotificacionesDonaciones WHERE eCodUsuario = ".$codigo); }
+             { mysqli_query($conexion,"DELETE FROM BitNotificacionesDonaciones WHERE eCodUsuario = ".$codigo); }
         }
         
 
@@ -161,7 +151,7 @@ switch($accion)
          $tDescripcion = "'".utf8_encode($tDescripcion)."'";
          $fecha = "'".date('Y-m-d H:i:s')."'";
          $eCodUsuario = $_SESSION['sessionAdmin']['eCodUsuario'];
-         mysqli_query($conexion,$conexion,"INSERT INTO SisLogs (eCodUsuario, fhFecha, tDescripcion) VALUES ($eCodUsuario, $fecha, $tDescripcion)");
+         mysqli_query($conexion,"INSERT INTO SisLogs (eCodUsuario, fhFecha, tDescripcion) VALUES ($eCodUsuario, $fecha, $tDescripcion)");
      }
 }
 

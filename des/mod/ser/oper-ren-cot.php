@@ -82,19 +82,18 @@ $horas[] = array('23:30','23:30 - 04:30');
         <input type="hidden" name="eCodPaquete" id="eCodPaquete">
         <!--tabs-->
         <ul class="nav nav-tabs md-tabs" role="tablist">
-    <li class="nav-item">
-        <a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#tab-content-0">
-            <span>Datos Principales</span>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a role="tab" class="nav-link" id="tab-1" data-toggle="tab" href="#tab-content-1">
-            <span>Art&iacute;culos</span>
-        </a>
-    </li>
-</ul>
-<div class="tab-content">
-    <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#tab-content-0"role="tab">Datos Principales</a>
+                <div class="slide"></div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#tab-content-1" role="tab">Art&iacute;culos</a>
+                <div class="slide"></div>
+            </li>
+        </ul>
+        
+<div class="tab-content card-block">
+    <div class="tab-pane active" id="tab-content-0" role="tabpanel">
         <div class="row">
             <div class="col-md-12">
                 <div class="main-card mb-3 card">
@@ -149,7 +148,7 @@ $horas[] = array('23:30','23:30 - 04:30');
             </div>
         </div>
     </div>
-    <div class="tab-pane tabs-animation fade" id="tab-content-1" role="tabpanel">
+    <div class="tab-pane" id="tab-content-1" role="tabpanel">
         <div class="row">
             <div class="col-md-8">
                 <div class="main-card mb-3 card">

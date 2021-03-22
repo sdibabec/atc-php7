@@ -40,10 +40,10 @@ $rdOrden = $data->rdOrden ? $data->rdOrden : 'eCodCamioneta';
 switch($accion)
 {
     case 'D':
-        $insert = "UPDATE BitEventos SET eCodEstatus = 4 WHERE eCodCamioneta = ".$codigo;
+        $insert = "UPDATE BitEventos SET tCodEstatus = 'EL' WHERE eCodCamioneta = ".$codigo;
         break;
     case 'F':
-        $insert = "UPDATE BitEventos SET eCodEstatus = 8 WHERE eCodCamioneta = ".$codigo;
+        $insert = "UPDATE BitEventos SET tCodEstatus = 'FI' WHERE eCodCamioneta = ".$codigo;
         break;
     case 'C':
         $tHTML =  '<table class="table table-hover" width="100%">'.
@@ -57,27 +57,14 @@ switch($accion)
         '<tbody>';
         /* hacemos select */
         $select = "SELECT * FROM (SELECT cc.*, ce.tIcono estatus FROM CatCamionetas cc INNER JOIN CatEstatus ce ON ce.tCodEstatus=cc.tCodEstatus ORDER BY cc.eCodCamioneta ASC ".
-		($bAll ? "" : " AND cc.eCodUsuario = ".$_SESSION['sessionAdmin']['eCodUsuario']).
-        //($bAll ? "" : " AND be.eCodEstatus<>4").
-        ($eCodCamioneta ? " AND be.eCodCamioneta = $eCodCamioneta" : "").
-        ($eCodCliente ? " AND be.eCodCliente = $eCodCliente" : "").
+		($eCodCamioneta ? " AND be.eCodCamioneta = $eCodCamioneta" : "").
         ($eCodEstatus ? " AND ce.eCodEstatus = $eCodEstatus" : "").
-        ($data->fhFechaConsulta1 ? " AND DATE(be.fhFechaEvento) BETWEEN  '$fhFecha1' AND '$fhFecha2'" : "").
         " LIMIT 0, $eLimit ".
 		")N0 ORDER BY $rdOrden $bOrden";
 		
         $rsConsulta = mysqli_query($conexion,$select);
         while($rConsulta=mysqli_fetch_array($rsConsulta)){
          /* validamos si está cargado */
-            $bCargado = (mysqli_num_rows(mysqli_query($conexion,"SELECT * FROM SisRegistrosCargas WHERE eCodCamioneta = ".$rConsulta{'eCodCamioneta'}))) ? true : false;
-            
-            $arrEstados = array();
-            $arrEstados[0] = true;
-            $arrEstados[1] = ($rConsulta{'eCodEstatus'}==1 || $rConsulta{'eCodEstatus'}==2) ? true : false;
-            $arrEstados[2] = true;
-            $arrEstados[3] = ($rConsulta{'eCodEstatus'}==1 || $rConsulta{'eCodEstatus'}==2) ? true : false;
-            $arrEstados[4] = ($rConsulta{'eCodEstatus'}==1 || $rConsulta{'eCodEstatus'}==2) ? true : false;
-            $arrEstados[5] = ($rConsulta{'eCodEstatus'}==1 || $rConsulta{'eCodEstatus'}==2) ? true : false;
             
             //imprimimos
        $tHTML .=    '<tr>'.

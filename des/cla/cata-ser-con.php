@@ -110,7 +110,7 @@ switch($accion)
         {
         $tHTML .=   '<tr>'.
                     '<td colspan="4" align="right">';
-        $tHTML .= $clNav->paginas($data->eInicio,$ePaginas);
+        $tHTML .= $clNav->paginas($ePagina,$ePaginas);
         $tHTML .=   '</td>';
         $tHTML .=   '</tr>';
         }
@@ -142,6 +142,6 @@ switch($accion)
      }
 }
 
-echo json_encode(array("exito"=>((!sizeof($errores)) ? 1 : 0), 'errores'=>$errores,'registros'=>(int)mysqli_num_rows($rsConsulta),"consulta"=>$tHTML));
+echo json_encode(array("exito"=>((!sizeof($errores)) ? 1 : 0), 'errores'=>$errores,'registros'=>(int)$eFilas,"consulta"=>$tHTML));
 
 ?>

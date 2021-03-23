@@ -343,6 +343,11 @@ class clNav
         
         $pagina = 0;
         
+        if(($actual+1)==$maximo)
+            { $inicio--; }
+        if(($inicio-2)<=0)
+                { $inicio = 1; }
+        
         $tHTML = '';
         
         
@@ -363,6 +368,31 @@ class clNav
         
     }
     
+    public function maximos()
+    {
+        $tHTML = '<option value="">Seleccione...</option>';
+        $select = "SELECT * FROM SisMaximosRegistros ORDER BY eRegistros ASC";
+        $rsMaximos = mysqli_query($conexion,$select);
+        while($r = mysqli_fetch_array($rsMaximos))
+        {
+            $tHTML .= '<option value="'.$r{'eRegistros'}.'">'.$r{'eRegistros'}.' registros</option>';
+        }
+        
+        return $tHTML;
+    }
+    
+    public function estatus($campo,$valores)
+    {
+        $tHTML = '<option value="">Seleccione...</option>';
+        $select = "SELECT $campo,tNombre FROM CatEstatus WHERE $campo IN (".implode(",",$valores).") ORDER BY eRegistros ASC";
+        $rsEstatus = mysqli_query($conexion,$select);
+        while($r = mysqli_fetch_array($rsEstatus))
+        {
+            $tHTML .= '<option value="'.$r{$campo}.'">'.$r{'tNombre'}.'</option>';
+        }
+        
+        return $tHTML;
+    }
 }
 
 

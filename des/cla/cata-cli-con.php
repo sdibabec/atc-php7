@@ -45,7 +45,13 @@ $terms2 = explode(" ",$data->tApellidos);
         $termino2 .= " AND cc.tApellidos like '%".$terms2[$i]."%' ";
     }
 
-$eLimit = $data->eMaxRegistros;
+$eInicio = (int)$data->eInicio>0 ? (($data->eInicio * 15)-15) : 0;
+//$eTermino = ($eInicio>0 ? $eInicio : 1) + 15;
+$eTermino = 15;
+
+$ePagina = $data->eInicio ? $data->eInicio : 1;
+
+$eLimit = $data->eMaxRegistros ? $data->eMaxRegistros : 250;
 $bOrden = $data->rOrden;
 $rdOrden = $data->rdOrden ? $data->rdOrden : 'eCodCliente';
 
@@ -99,6 +105,12 @@ switch($accion)
         " ORDER BY cc.$rdOrden $bOrden".
         " LIMIT 0, $eLimit ".
 		")N0 ";
+        
+        $eFilas = mysqli_num_rows(mysqli_query($conexion,$select1));
+        
+        $ePaginas = round($eFilas / 15);
+        
+        $select = "SELECT * FROM ($select1) N0 ORDER BY $rdOrden $bOrden LIMIT $eInicio, $eTermino";
 		
         $rsConsulta = mysqli_query($conexion,$select);
         while($rConsulta=mysqli_fetch_array($rsConsulta)){
@@ -115,6 +127,13 @@ switch($accion)
             //imprimimos
         }
         /* hacemos select */
+        
+        $tHTML .=   '<tr>'.
+                    '<td colspan="7" align="right">';
+        $tHTML .= $clNav->paginas((int)$ePagina,(int)$ePaginas);
+        $tHTML .=   '</td>';
+        $tHTML .=   '</tr>';
+        
         $tHTML .= '</tbody>'.
             '</table>';
         break;
@@ -139,6 +158,6 @@ if($accion=="D" || $accion=="F")
     }
 }
 
-echo json_encode(array("exito"=>((!sizeof($errores)) ? 1 : 0), 'errores'=>$errores,'registros'=>(int)mysqli_num_rows($rsConsulta),"consulta"=>$tHTML,"select",$select));
+echo json_encode(array("exito"=>((!sizeof($errores)) ? 1 : 0), 'errores'=>$errores,'registros'=>(int)$eFilas,"consulta"=>$tHTML,"select",$select));
 
 ?>

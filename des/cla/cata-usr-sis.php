@@ -32,7 +32,13 @@ $fhFecha2 = $data->fhFechaTermino ? explode("/",$data->fhFechaTermino) : false;
 $fhFechaInicio = "'".$fhFecha[2]."-".$fhFecha[1]."-".$fhFecha[0]."'";
 $fhFechaTermino = $fhFecha2 ? "'".$fhFecha2[2]."-".$fhFecha2[1]."-".$fhFecha2[0]."'" : "'".$fhFechaInicio."'";
 
-$eLimit = $data->eMaxRegistros;
+$eInicio = (int)$data->eInicio>0 ? (($data->eInicio * 15)-15) : 0;
+//$eTermino = ($eInicio>0 ? $eInicio : 1) + 15;
+$eTermino = 15;
+
+$ePagina = $data->eInicio ? $data->eInicio : 1;
+
+$eLimit = $data->eMaxRegistros ? $data->eMaxRegistros : 250;
 $bOrden = $data->rOrden;
 $rdOrden = $data->rdOrden ? $data->rdOrden : 'eCodUsuario';
 
@@ -106,22 +112,13 @@ switch($accion)
             //imprimimos
         }
         /* hacemos select */
-        if($ePaginas>1)
-        {
+        
         $tHTML .=   '<tr>'.
-                    '<td colspan="4" align="right">';
-        $tHTML .=   '<nav aria-label="Page navigation example">';
-        $tHTML .=   '<ul class="pagination">';
-        for($i=1;$i<=$ePaginas;$i++)
-        {
-            $activo = ($i==$data->eInicio ? 'active' : '');
-            $tHTML .= '<li class="page-item '.$activo.'"><a class="page-link" href="#" onclick="asignarPagina(\''.$i.'\')">'.$i.'</a></li>';   
-        }
-        $tHTML .=   '</ul>';
-        $tHTML .=   '</nav>';
+                    '<td colspan="7" align="right">';
+        $tHTML .= $clNav->paginas((int)$ePagina,(int)$ePaginas);
         $tHTML .=   '</td>';
         $tHTML .=   '</tr>';
-        }
+        
         $tHTML .= '</tbody>'.
             '</table>';
         
@@ -155,6 +152,6 @@ switch($accion)
      }
 }
 
-echo json_encode(array("exito"=>((!sizeof($errores)) ? 1 : 0), 'errores'=>$errores,'registros'=>(int)mysqli_num_rows($rsConsulta),"consulta"=>$tHTML,"query"=>$select));
+echo json_encode(array("exito"=>((!sizeof($errores)) ? 1 : 0), 'errores'=>$errores,'registros'=>(int)$eFilas),"consulta"=>$tHTML,"query"=>$select));
 
 ?>

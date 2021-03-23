@@ -36,7 +36,7 @@ $fhFecha2 = $data->fhFechaConsulta2 ? $fhFechaFin[2].'-'.$fhFechaFin[1].'-'.$fhF
 $eInicio = $data->eInicio ? (($data->eInicio * 15)-15) : 0;
 $eTermino = ($eInicio>0 ? $eInicio : 1) * 15;
 
-$eLimit = $data->eMaxRegistros;
+$eLimit = $data->eMaxRegistros ? $data->eMaxRegistros : 250;
 $bOrden = $data->rOrden;
 $rdOrden = $data->rdOrden ? $data->rdOrden : 'eCodEvento';
 
@@ -76,8 +76,9 @@ switch($accion)
         ($eCodCliente ? " AND be.eCodCliente = $eCodCliente" : "").
         ($eCodEstatus ? " AND be.eCodEstatus = $eCodEstatus" : "").
         ($data->fhFechaConsulta1 ? " AND DATE(be.fhFechaEvento) BETWEEN  '$fhFecha1' AND '$fhFecha2'" : "").
-        //" LIMIT 0, $eLimit ".
-		")N0 ORDER BY $rdOrden $bOrden";
+        
+		")N0 ".
+        " LIMIT 0, $eLimit ";
         
         $eFilas = mysqli_num_rows(mysqli_query($conexion,$select1));
         

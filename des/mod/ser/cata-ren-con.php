@@ -97,6 +97,7 @@ $("#fhFechaConsulta2").datepicker({
                                 <form id="Datos" name="Datos">
                                     <input type="hidden" name="tAccion" id="tAccion" value="">
                                     <input type="hidden" name="eAccion" id="eAccion" value="">
+                                    <input type="hidden" name="eInicio" id="eInicio" value="">
                                     
                                     
 <div class="form-row">
@@ -123,9 +124,9 @@ $("#fhFechaConsulta2").datepicker({
     <div class="form-group col-md-3"><label><input type="radio" name="rdOrden" value="fhFechaEvento"> Fecha</label></div>
     <div class="form-group col-md-3">
         <div class="input-group date">
-                    <input type="text" class="input-sm form-control" name="fhFechaConsulta1" id="fhFechaConsulta1" value="<?=date('d/m/Y',strtotime("-5 days"));?>" style="position: relative; z-index: 9999;">
+                    <input type="text" class="input-sm form-control" name="fhFechaConsulta1" id="fhFechaConsulta1" value="<?=date('d/m/Y',strtotime("-5 days"));?>">
             <span class="input-group-addon">-</span>
-             <input type="text" class="input-sm form-control" name="fhFechaConsulta2" id="fhFechaConsulta2" value="<?=date('d/m/Y',strtotime("+5 days"));?>" style="position: relative; z-index: 9999;">
+             <input type="text" class="input-sm form-control" name="fhFechaConsulta2" id="fhFechaConsulta2" value="<?=date('d/m/Y',strtotime("+5 days"));?>">
                 </div>
     </div>
 </div>

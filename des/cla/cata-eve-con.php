@@ -82,7 +82,7 @@ switch($accion)
         
         $eFilas = mysqli_num_rows(mysqli_query($conexion,$select1));
         
-        $ePaginas = round($eFilas / 15);
+        $ePaginas = round($eFilas / 10);
         
         $select = "SELECT * FROM ($select1) N0 ORDER BY $rdOrden $bOrden LIMIT $eInicio, $eTermino";
 		

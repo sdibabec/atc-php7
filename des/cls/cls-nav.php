@@ -378,7 +378,7 @@ class clNav
             $tHTML .= '<option value="'.$r{'eRegistros'}.'">'.$r{'eRegistros'}.' registros</option>';
         }
         
-        $tHTML .= '<option value="">Seleccione...</option>'.$tHTML;
+        $tHTML .= $tHTML;
         
         return $tHTML;
     }

@@ -378,9 +378,9 @@ class clNav
             $tHTML .= '<option value="'.$r{'eRegistros'}.'">'.$r{'eRegistros'}.' registros</option>';
         }
         
-        $tHTML .= $tHTML;
         
-        return $tHTML;
+        
+        print $tHTML;
     }
     
     public function estatus($campo,$valores)

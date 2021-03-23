@@ -402,7 +402,7 @@ class clSis
         $select = " SELECT * FROM SisVariables WHERE tNombre = '$tVariable'";
         $r = mysqli_fetch_array(mysqli_query($this->conexion,$select));
         
-        return $r{'tValor'};
+        return utf8_encode($r{'tValor'});
     }
 }
 

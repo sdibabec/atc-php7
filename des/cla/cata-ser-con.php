@@ -24,6 +24,9 @@ $accion = $data->tCodAccion ? $data->tCodAccion : $data->tAccion;
 $eCodServicio = $data->eCodServicio ? $data->eCodServicio : false;
 $eCodInventario = $data->eCodInventario ? $data->eCodInventario : false;
 
+$eInicio = $data->eInicio ? (($data->eInicio * 15)-15) : 0;
+$eTermino = ($eInicio>0 ? $eInicio : 1) * 15;
+
     $terms = explode(" ",$data->tNombre);
     
     $termino = "";
@@ -34,7 +37,7 @@ $eCodInventario = $data->eCodInventario ? $data->eCodInventario : false;
     }
 
 
-$eLimit = $data->eMaxRegistros;
+$eLimit = $data->eMaxRegistros ? $data->eMaxRegistros : 250;
 $bOrden = $data->rOrden;
 $rdOrden = $data->rdOrden ? $data->rdOrden : 'eCodServicio';
 
@@ -69,7 +72,7 @@ switch($accion)
         '</thead>'.
         '<tbody>';
         /* hacemos select */
-        $select = "SELECT DISTINCT
+        $select1 = "SELECT DISTINCT
         cs.*, (SELECT COUNT(*) FROM RelServiciosInventario WHERE eCodServicio=cs.eCodServicio) eProductos
         FROM
 		  CatServicios cs
@@ -78,7 +81,13 @@ switch($accion)
         ($eCodServicio ? " AND cs.eCodServicio = $eCodServicio" : "").
         ($eCodInventario ? " AND rs.eCodInventario = $eCodInventario" : "").
         ($data->tNombre ? $termino : "").
-		" ORDER BY $rdOrden $bOrden LIMIT 0, $eLimit ";
+		" LIMIT 0, $eLimit ";
+        
+        $eFilas = mysqli_num_rows(mysqli_query($conexion,$select1));
+        
+        $ePaginas = round($eFilas / 15);
+        
+        $select = "SELECT * FROM ($select1) N0 ORDER BY $rdOrden $bOrden LIMIT $eInicio, $eTermino";
         
         $rsConsulta = mysqli_query($conexion,$select);
         while($rConsulta=mysqli_fetch_array($rsConsulta)){
@@ -96,6 +105,16 @@ switch($accion)
             //imprimimos
         }
         /* hacemos select */
+        
+        if($ePaginas>1)
+        {
+        $tHTML .=   '<tr>'.
+                    '<td colspan="4" align="right">';
+        $tHTML .= $clNav->paginas($data->eInicio,$ePaginas);
+        $tHTML .=   '</td>';
+        $tHTML .=   '</tr>';
+        }
+        
         $tHTML .= '</tbody>'.
             '</table>';
         

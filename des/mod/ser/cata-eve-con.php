@@ -97,7 +97,7 @@ $("#fhFechaConsulta2").datepicker({
                                 <form id="Datos" name="Datos">
                                     <input type="hidden" name="tAccion" id="tAccion" value="">
                                     <input type="hidden" name="eAccion" id="eAccion" value="">
-                                    
+                                    <input type="hidden" name="eInicio" id="eInicio" value="">
                                     
 <div class="form-row">
     <div class="form-group col-md-3"><label><input type="radio" name="rdOrden" value="eCodEvento" checked="checked"> C&oacute;digo</label></div>

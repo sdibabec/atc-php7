@@ -1041,6 +1041,15 @@ else
           }
       }
       
+      function asignarPagina(pagina)
+        {
+            eInicio = document.getElementById('eInicio');
+            
+            if(eInicio)
+                { eInicio.value = pagina; }
+            filtrar();
+        }
+      
       function verMisClientes()
       {
           $('#misClientes').modal({

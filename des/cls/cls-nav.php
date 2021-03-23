@@ -318,6 +318,46 @@ class clNav
         }
     }
     
+    public function paginas($actual,$maximo)
+    {
+        $bloque = 5;
+        if($actual==$maximo)
+        { $inicio = $maximo-($bloque-1); }
+        else if(($actual-2)<=0)
+        { $inicio = 1; }
+        else
+        { $inicio = $actual-2; }
+        
+        if(($actual==$maximo) || (($actual+2)>=$maximo))
+        { $limite = $maximo; }
+        else if(($actual-2)<=0)
+        { $limite = bloque; }
+        else
+        { $limite = $actual + 2; }
+        
+        $pagina = 0;
+        
+        $tHTML = '';
+        
+        if((int)$maximo>1)
+        {
+            $tHTML .= '<nav>';
+            $tHTML .= '<ul class="pagination">';
+            
+            for($pagina = $inicio; $pagina<=$limite;$pagina++)
+            {
+                $tHTML .= '<li class="page-item '.($pagina==$actual : 'active' : '').'"><a class="page-link" onclick="asignarPagina('.$pagina.');">'.$pagina.'</a></li>';
+                //print $pagina.'<br>';
+            }
+            
+            $tHTML .= '</ul>';
+            $tHTML .= '</nav>';
+        }
+        
+        return $tHTML;
+        
+    }
+    
 }
 
 

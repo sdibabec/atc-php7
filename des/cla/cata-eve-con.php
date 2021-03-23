@@ -33,6 +33,9 @@ $fhFechaFin = $data->fhFechaConsulta2 ? explode("/",$data->fhFechaConsulta2) : $
 $fhFecha1 = $fhFechaInicio[2].'-'.$fhFechaInicio[1].'-'.$fhFechaInicio[0];
 $fhFecha2 = $data->fhFechaConsulta2 ? $fhFechaFin[2].'-'.$fhFechaFin[1].'-'.$fhFechaFin[0] : $fhFecha1;
 
+$eInicio = $data->eInicio ? (($data->eInicio * 15)-15) : 0;
+$eTermino = ($eInicio>0 ? $eInicio : 1) * 15;
+
 $eLimit = $data->eMaxRegistros;
 $bOrden = $data->rOrden;
 $rdOrden = $data->rdOrden ? $data->rdOrden : 'eCodEvento';
@@ -59,7 +62,7 @@ switch($accion)
         '</thead>'.
         '<tbody>';
         /* hacemos select */
-        $select = "SELECT * FROM (SELECT 
+        $select1 = "SELECT * FROM (SELECT 
         be.*, cc.tNombres nombreCliente, cc.tApellidos apellidosCliente,
         su.tNombre as promotor, ce.tIcono 
         FROM BitEventos be 
@@ -73,8 +76,14 @@ switch($accion)
         ($eCodCliente ? " AND be.eCodCliente = $eCodCliente" : "").
         ($eCodEstatus ? " AND be.eCodEstatus = $eCodEstatus" : "").
         ($data->fhFechaConsulta1 ? " AND DATE(be.fhFechaEvento) BETWEEN  '$fhFecha1' AND '$fhFecha2'" : "").
-        " LIMIT 0, $eLimit ".
+        //" LIMIT 0, $eLimit ".
 		")N0 ORDER BY $rdOrden $bOrden";
+        
+        $eFilas = mysqli_num_rows(mysqli_query($conexion,$select1));
+        
+        $ePaginas = round($eFilas / 15);
+        
+        $select = "SELECT * FROM ($select1) N0 ORDER BY $rdOrden $bOrden LIMIT $eInicio, $eTermino";
 		
         $rsConsulta = mysqli_query($conexion,$select);
         while($rConsulta=mysqli_fetch_array($rsConsulta)){
@@ -101,6 +110,14 @@ switch($accion)
             //imprimimos
         }
         /* hacemos select */
+        if($ePaginas>1)
+        {
+        $tHTML .=   '<tr>'.
+                    '<td colspan="4" align="right">';
+        $tHTML .= $clNav->paginas($data->eInicio,$ePaginas);
+        $tHTML .=   '</td>';
+        $tHTML .=   '</tr>';
+        }
         $tHTML .= '</tbody>'.
             '</table>';
         break;

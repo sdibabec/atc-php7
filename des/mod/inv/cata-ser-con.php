@@ -87,6 +87,7 @@ $(document).ready(function() {
                                 <form id="Datos" name="Datos">
                                     <input type="hidden" name="tAccion" id="tAccion" value="">
                                     <input type="hidden" name="eAccion" id="eAccion" value="">
+                                    <input type="hidden" name="eInicio" id="eInicio" value="">
                                     
                                     
 <div class="form-row">

@@ -118,11 +118,11 @@ switch($accion)
        $tHTML .=    '<tr>'.
         '<td>'.$clNav->menuEmergenteJSON($rConsulta{'eCodCliente'},'cata-cli-con').'</td>'.
         '<td><i class="'.$rConsulta{'estatus'}.'"></i></td>'.
-        '<td>'.($rConsulta{'tTitulo'}).''.($rConsulta{'tNombres'}).'</td>'.
-		'<td>'.($rConsulta{'tApellidos'}).'</td>'.
-		'<td>'.utf8_encode($rConsulta{'tCorreo'}).'</td>'.
-		'<td>'.utf8_encode($rConsulta{'tTelefonoFijo'}).'</td>'.
-		'<td>'.utf8_encode($rConsulta{'promotor'}).'</td>'.
+        '<td>'.utf8_decode($rConsulta{'tTitulo'}).''.utf8_decode($rConsulta{'tNombres'}).'</td>'.
+		'<td>'.utf8_decode($rConsulta{'tApellidos'}).'</td>'.
+		'<td>'.utf8_decode($rConsulta{'tCorreo'}).'</td>'.
+		'<td>'.utf8_decode($rConsulta{'tTelefonoFijo'}).'</td>'.
+		'<td>'.utf8_decode($rConsulta{'promotor'}).'</td>'.
                     '</tr>';
             //imprimimos
         }

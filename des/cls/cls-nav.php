@@ -343,7 +343,7 @@ class clNav
         
         $pagina = 0;
         
-        $tHTML = '';
+        $tHTML = 'Inicio: '.$inicio.' Limite: '.$limite;
         
         
             $tHTML .= '<nav>';

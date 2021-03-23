@@ -63,6 +63,7 @@ $(document).ready(function() {
     
         $("#fhFechaConsulta1").datepicker({
             dateFormat: "dd/mm/yy",
+            changeYear: true,
     onSelect: function(selectedDate) {
         // Set the minDate of 'to' as the selectedDate of 'from'
         $("#fhFechaConsulta2").datepicker("option", "minDate", selectedDate);
@@ -71,6 +72,7 @@ $(document).ready(function() {
     
 $("#fhFechaConsulta2").datepicker({
     dateFormat: "dd/mm/yy",
+    changeYear: true,
     onSelect: function(selectedDate) {
         // Set the minDate of 'to' as the selectedDate of 'from'
         $("#fhFechaConsulta1").datepicker("option", "maxDate", selectedDate);

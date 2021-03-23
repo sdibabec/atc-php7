@@ -63,6 +63,7 @@ $(document).ready(function() {
     
         $("#fhFechaConsulta1").datepicker({
             dateFormat: "dd/mm/yy",
+            changeYear: true,
     onSelect: function(selectedDate) {
         // Set the minDate of 'to' as the selectedDate of 'from'
         $("#fhFechaConsulta2").datepicker("option", "minDate", selectedDate);
@@ -71,6 +72,7 @@ $(document).ready(function() {
     
 $("#fhFechaConsulta2").datepicker({
     dateFormat: "dd/mm/yy",
+    changeYear: true,
     onSelect: function(selectedDate) {
         // Set the minDate of 'to' as the selectedDate of 'from'
         $("#fhFechaConsulta1").datepicker("option", "maxDate", selectedDate);
@@ -113,7 +115,7 @@ $("#fhFechaConsulta2").datepicker({
 <div class="form-row">
     <div class="form-group col-md-3"><label><input type="radio" name="rdOrden" value="eCodEstatus"> Estatus</label></div>
     <div class="form-group col-md-3">
-        <select id="eCodEstatus" name="eCodEstatus" >
+        <select id="eCodEstatus" name="eCodEstatus" class="form-control" >
         <option value="">Seleccione...</option>
         <? while($rEstatus = mysqli_fetch_array($rsEstatus)) { ?>
             <option value="<?=$rEstatus{'eCodEstatus'};?>"><?=$rEstatus{'tEstatus'};?></option>

@@ -95,8 +95,7 @@ $(document).ready(function() {
     <div class="form-group col-md-3">
         <input type="text" class="form-control" name="eCodServicio" id="eCodServicio">
     </div>
-    <td colspan="2">
-    </div>
+    
 </div>
 <div class="form-row">
     <div class="form-group col-md-3"><label><input type="radio" name="rdOrden" value="tNombre"> Nombre</label></div>

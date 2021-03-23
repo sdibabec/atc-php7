@@ -35,7 +35,8 @@ $eCodTipoInventario = $data->eCodTipoInventario ? $data->eCodTipoInventario : fa
 
 
 $eInicio = (int)$data->eInicio>0 ? (($data->eInicio * 15)-15) : 0;
-$eTermino = ($eInicio>0 ? $eInicio : 1) + 15;
+//$eTermino = ($eInicio>0 ? $eInicio : 1) + 15;
+$eTermino = 15;
 
 $ePagina = $data->eInicio ? $data->eInicio : 1;
 

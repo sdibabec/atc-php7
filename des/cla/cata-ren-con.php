@@ -34,7 +34,8 @@ $fhFecha1 = $fhFechaInicio[2].'-'.$fhFechaInicio[1].'-'.$fhFechaInicio[0];
 $fhFecha2 = $data->fhFechaConsulta2 ? $fhFechaFin[2].'-'.$fhFechaFin[1].'-'.$fhFechaFin[0] : $fhFecha1;
 
 $eInicio = (int)$data->eInicio>0 ? (($data->eInicio * 15)-15) : 0;
-$eTermino = ($eInicio>0 ? $eInicio : 1) + 14;
+//$eTermino = ($eInicio>0 ? $eInicio : 1) + 15;
+$eTermino = 15;
 
 $ePagina = $data->eInicio ? $data->eInicio : 1;
 

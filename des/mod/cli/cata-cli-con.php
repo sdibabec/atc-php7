@@ -72,6 +72,7 @@ $(document).ready(function() {
                                 <form id="Datos" name="Datos">
                                     <input type="hidden" name="tAccion" id="tAccion" value="">
                                     <input type="hidden" name="eAccion" id="eAccion" value="">
+                                    <input type="hidden" name="eInicio" id="eInicio" value="">
                                     
                                     
 <div class="form-row">
@@ -97,9 +98,7 @@ $(document).ready(function() {
     <div class="form-group col-md-3">Mostrar</div>
     <div class="form-group col-md-3">
         <select id="eMaxRegistros" name="eMaxRegistros" >
-        <? while($rRegistro = mysqli_fetch_array($rsMaximos)) { ?>
-            <option value="<?=$rRegistro{'eRegistros'};?>"><?=$rRegistro{'eRegistros'};?> registros</option>
-        <? } ?>
+        <?=$clNav->maximos();?>
         </select>
     </div>
     <div class="form-group col-md-3">Orden</div>

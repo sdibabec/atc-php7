@@ -336,14 +336,14 @@ class clNav
         else 
         {
             if(($actual-2)<=0)
-                { $limite = bloque; }
+                { $limite = $bloque; }
             else
                 { $limite = $actual + 2; }
         }
         
         $pagina = 0;
         
-        $tHTML = 'Inicio: '.$inicio.' Limite: '.$limite;
+        $tHTML = '';
         
         
             $tHTML .= '<nav>';

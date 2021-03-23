@@ -111,6 +111,14 @@ switch($accion)
             //imprimimos
         }
         /* hacemos select */
+        if($ePaginas>1)
+        {
+        $tHTML .=   '<tr>'.
+                    '<td colspan="4" align="right">';
+        $tHTML .= $clNav->paginas($data->eInicio,$ePaginas);
+        $tHTML .=   '</td>';
+        $tHTML .=   '</tr>';
+        }
         $tHTML .= '</tbody>'.
             '</table>';
         break;

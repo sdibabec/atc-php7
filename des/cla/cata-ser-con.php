@@ -112,7 +112,7 @@ switch($accion)
         if($ePaginas>1)
         {
         $tHTML .=   '<tr>'.
-                    '<td colspan="4" align="right">';
+                    '<td colspan="4" align="center">';
         $tHTML .= $clNav->paginas($ePagina,$ePaginas);
         $tHTML .=   '</td>';
         $tHTML .=   '</tr>';

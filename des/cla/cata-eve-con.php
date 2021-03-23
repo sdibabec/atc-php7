@@ -116,7 +116,7 @@ switch($accion)
         /* hacemos select */
         
         $tHTML .=   '<tr>'.
-                    '<td colspan="7" align="right">';
+                    '<td colspan="6" align="center">';
         $tHTML .= $clNav->paginas((int)$ePagina,(int)$ePaginas);
         $tHTML .=   '</td>';
         $tHTML .=   '</tr>';

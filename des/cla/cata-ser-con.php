@@ -24,9 +24,6 @@ $accion = $data->tCodAccion ? $data->tCodAccion : $data->tAccion;
 $eCodServicio = $data->eCodServicio ? $data->eCodServicio : false;
 $eCodInventario = $data->eCodInventario ? $data->eCodInventario : false;
 
-$eInicio = $data->eInicio ? (($data->eInicio * 15)-15) : 0;
-$eTermino = ($eInicio>0 ? $eInicio : 1) * 15;
-
     $terms = explode(" ",$data->tNombre);
     
     $termino = "";
@@ -36,6 +33,12 @@ $eTermino = ($eInicio>0 ? $eInicio : 1) * 15;
         $termino .= " AND tNombre like '%".$terms[$i]."%' ";
     }
 
+
+$eInicio = (int)$data->eInicio>0 ? (($data->eInicio * 15)-15) : 0;
+//$eTermino = ($eInicio>0 ? $eInicio : 1) + 15;
+$eTermino = 15;
+
+$ePagina = $data->eInicio ? $data->eInicio : 1;
 
 $eLimit = $data->eMaxRegistros ? $data->eMaxRegistros : 250;
 $bOrden = $data->rOrden;

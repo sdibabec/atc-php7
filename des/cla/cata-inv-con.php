@@ -34,7 +34,10 @@ $eCodTipoInventario = $data->eCodTipoInventario ? $data->eCodTipoInventario : fa
     }
 
 
-$eLimit = $data->eMaxRegistros;
+$eInicio = $data->eInicio ? (($data->eInicio * 10)-10) : 0;
+$eTermino = ($eInicio>0 ? $eInicio : 1) * 10;
+
+$eLimit = $data->eMaxRegistros ? $data->eMaxRegistros : 250;
 $bOrden = $data->rOrden;
 $rdOrden = $data->rdOrden ? $data->rdOrden : 'eCodInventario';
 
@@ -92,10 +95,18 @@ switch($accion)
 					INNER JOIN CatTiposInventario cti ON cti.eCodTipoInventario = ci.eCodTipoInventario
                     LEFT JOIN CatSubClasificacionesInventarios csi ON csi.eCodSubclasificacion=ci.eCodSubclasificacion ".
 					" WHERE 1=1".
-            ($eCodInventario ? " AND ci.eCodInventario = $eCodInventario " : "").
-            ($eCodTipoInventario ? " AND ci.eCodTipoInventario = $eCodTipoInventario " : "").
-            ($data->tNombre ? $termino : "").
-					")N0 ORDER BY $rdOrden $bOrden LIMIT 0, $eLimit";
+                ($eCodInventario ? " AND ci.eCodInventario = $eCodInventario " : "").
+                ($eCodTipoInventario ? " AND ci.eCodTipoInventario = $eCodTipoInventario " : "").
+                ($data->tNombre ? $termino : "").
+                "  LIMIT 0, $eLimit".
+				")N0 ";
+        
+        $eFilas = mysqli_num_rows(mysqli_query($conexion,$select1));
+        
+        $ePaginas = round($eFilas / 10);
+        
+        $select = "SELECT * FROM ($select1) N0 ORDER BY $rdOrden $bOrden LIMIT $eInicio, $eTermino";
+        
         $rsConsulta = mysqli_query($conexion,$select);
         while($rConsulta=mysqli_fetch_array($rsConsulta)){
          /* validamos si está cargado */
@@ -114,6 +125,14 @@ switch($accion)
             //imprimimos
         }
         /* hacemos select */
+        if($ePaginas>1)
+        {
+        $tHTML .=   '<tr>'.
+                    '<td colspan="4" align="right">';
+        $tHTML .= $clNav->paginas($data->eInicio,$ePaginas);
+        $tHTML .=   '</td>';
+        $tHTML .=   '</tr>';
+        }
         $tHTML .= '</tbody>'.
             '</table>';
         break;

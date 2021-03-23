@@ -76,9 +76,9 @@ switch($accion)
         ($eCodCliente ? " AND be.eCodCliente = $eCodCliente" : "").
         ($eCodEstatus ? " AND be.eCodEstatus = $eCodEstatus" : "").
         ($data->fhFechaConsulta1 ? " AND DATE(be.fhFechaEvento) BETWEEN  '$fhFecha1' AND '$fhFecha2'" : "").
+        " LIMIT 0, $eLimit ".
+		")N0 ";
         
-		")N0 ".
-        " LIMIT 0, $eLimit ";
         
         $eFilas = mysqli_num_rows(mysqli_query($conexion,$select1));
         

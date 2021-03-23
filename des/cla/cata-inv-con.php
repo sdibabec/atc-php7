@@ -34,9 +34,10 @@ $eCodTipoInventario = $data->eCodTipoInventario ? $data->eCodTipoInventario : fa
     }
 
 
-$eInicio = $data->eInicio ? (($data->eInicio * 10)-10) : 0;
+$eInicio = $data->eInicio ? (($data->eInicio * 15)-15) : 0;
+$eTermino = ($eInicio>0 ? $eInicio : 1) * 15;
+
 $ePagina = $data->eInicio ? $data->eInicio : 1;
-$eTermino = ($eInicio>0 ? $eInicio : 1) * 10;
 
 $eLimit = $data->eMaxRegistros ? $data->eMaxRegistros : 250;
 $bOrden = $data->rOrden;

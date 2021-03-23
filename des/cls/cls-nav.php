@@ -343,10 +343,7 @@ class clNav
         
         $pagina = 0;
         
-        if(($actual+1)==$maximo)
-            { $inicio--; }
-        if(($inicio-2)<=0)
-                { $inicio = 1; }
+        
         
         $tHTML = '';
         

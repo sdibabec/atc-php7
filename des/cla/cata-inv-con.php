@@ -86,7 +86,7 @@ switch($accion)
                  '    </tr>'.
                  '</thead>'.
                  '<tbody>';
-        $select = "	SELECT * FROM (SELECT 
+        $select1 = "	SELECT * FROM (SELECT 
 					cti.tNombre as tipo, 
                     csi.tNombre subclasificacion,
 					ci.*

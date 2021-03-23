@@ -112,7 +112,7 @@ switch($accion)
 		    ($bAll ? "" : " AND cc.eCodUsuario = ".$_SESSION['sessionAdmin']['eCodUsuario']).
 		    ($eCodTransaccion ? " AND bt.eCodTransaccion = ".$eCodTransaccion : "").
             ($eCodCliente ? " AND cc.eCodCliente = ".$eCodCliente : "").
-            $data->fhFechaConsulta1 ? " AND DATE(bt.fhFecha) BETWEEN  '$fhFecha1' AND '$fhFecha2'" : "").
+            ($data->fhFechaConsulta1 ? " AND DATE(bt.fhFecha) BETWEEN  '$fhFecha1' AND '$fhFecha2'" : "").
             //" ORDER BY cc.$rdOrden $bOrden".
             " LIMIT 0, $eLimit ".
 		  ")N0 ";

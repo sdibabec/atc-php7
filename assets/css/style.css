@@ -9646,7 +9646,8 @@ span.badge {
 
 .table td,
 .table th {
-	padding: 1.25rem 0.75rem;
+	padding: 0.25rem 0.75rem;
+    vertical-align: middle;
 }
 
 .table thead th {

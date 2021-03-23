@@ -62,7 +62,7 @@ switch($accion)
         '</thead>'.
         '<tbody>';
         /* hacemos select */
-        $select = "SELECT * FROM (SELECT 
+        $select1 = "SELECT * FROM (SELECT 
         be.*, cc.tNombres nombreCliente, cc.tApellidos apellidosCliente,
         su.tNombre as promotor, ce.tIcono 
         FROM BitEventos be 

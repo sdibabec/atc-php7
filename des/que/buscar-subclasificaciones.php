@@ -5,6 +5,8 @@
 <?php header('Content-Type: application/json'); ?>
 <?php
 
+require_once("../cls/cls-sistema.php");
+
 if (isset($_SERVER{'HTTP_ORIGIN'})) {
         header("Access-Control-Allow-Origin: {$_SERVER{'HTTP_ORIGIN'}}");
         header('Access-Control-Allow-Credentials: true');

@@ -1,8 +1,8 @@
 <?php
 
 
-require_once("../cls/cls-sistema.php");
 
+require_once("../cls/cls-sistema.php");
 
 
 $clSistema = new clSis();

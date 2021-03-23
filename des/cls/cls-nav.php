@@ -323,17 +323,23 @@ class clNav
         $bloque = 5;
         if($actual==$maximo)
         { $inicio = $maximo-($bloque-1); }
-        else if(($actual-2)<=0)
-        { $inicio = 1; }
-        else
-        { $inicio = $actual-2; }
+        else 
+        {
+            if(($actual-2)<=0)
+                { $inicio = 1; }
+            else
+                { $inicio = $actual-2; }
+        }
         
         if(($actual==$maximo) || (($actual+2)>=$maximo))
         { $limite = $maximo; }
-        else if(($actual-2)<=0)
-        { $limite = bloque; }
-        else
-        { $limite = $actual + 2; }
+        else 
+        {
+            if(($actual-2)<=0)
+                { $limite = bloque; }
+            else
+                { $limite = $actual + 2; }
+        }
         
         $pagina = 0;
         

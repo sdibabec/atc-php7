@@ -33,8 +33,8 @@ $fhFechaFin = $data->fhFechaConsulta2 ? explode("/",$data->fhFechaConsulta2) : $
 $fhFecha1 = $fhFechaInicio[2].'-'.$fhFechaInicio[1].'-'.$fhFechaInicio[0];
 $fhFecha2 = $data->fhFechaConsulta2 ? $fhFechaFin[2].'-'.$fhFechaFin[1].'-'.$fhFechaFin[0] : $fhFecha1;
 
-$eInicio = $data->eInicio ? (($data->eInicio * 15)-15) : 0;
-$eTermino = ($eInicio>0 ? $eInicio : 1) * 15;
+$eInicio = $data->eInicio ? (($data->eInicio * 10)-10) : 0;
+$eTermino = ($eInicio>0 ? $eInicio : 1) * 10;
 
 $eLimit = $data->eMaxRegistros ? $data->eMaxRegistros : 250;
 $bOrden = $data->rOrden;
@@ -146,6 +146,6 @@ if($accion=="D" || $accion=="F")
     
 }
 
-echo json_encode(array("exito"=>((!sizeof($errores)) ? 1 : 0), 'errores'=>$errores,'registros'=>(int)mysqli_num_rows($rsConsulta),"consulta"=>$tHTML));
+echo json_encode(array("exito"=>((!sizeof($errores)) ? 1 : 0), 'errores'=>$errores,'registros'=>(int)$eFilas,"consulta"=>$tHTML));
 
 ?>

@@ -35,7 +35,7 @@ $eCodTipoInventario = $data->eCodTipoInventario ? $data->eCodTipoInventario : fa
 
 
 $eInicio = $data->eInicio ? (($data->eInicio * 15)-15) : 0;
-$eTermino = ($eInicio>0 ? $eInicio : 1) * 15;
+$eTermino = ($eInicio>0 ? $eInicio : 1) + 15;
 
 $ePagina = $data->eInicio ? $data->eInicio : 1;
 
@@ -105,7 +105,7 @@ switch($accion)
         
         $eFilas = mysqli_num_rows(mysqli_query($conexion,$select1));
         
-        $ePaginas = round($eFilas / 10);
+        $ePaginas = round($eFilas / 15);
         
         $select = "SELECT * FROM ($select1) N0 ORDER BY $rdOrden $bOrden LIMIT $eInicio, $eTermino";
         

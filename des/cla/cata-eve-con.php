@@ -33,8 +33,10 @@ $fhFechaFin = $data->fhFechaConsulta2 ? explode("/",$data->fhFechaConsulta2) : $
 $fhFecha1 = $fhFechaInicio[2].'-'.$fhFechaInicio[1].'-'.$fhFechaInicio[0];
 $fhFecha2 = $data->fhFechaConsulta2 ? $fhFechaFin[2].'-'.$fhFechaFin[1].'-'.$fhFechaFin[0] : $fhFecha1;
 
-$eInicio = $data->eInicio ? (($data->eInicio * 10)-10) : 0;
-$eTermino = ($eInicio>0 ? $eInicio : 1) * 10;
+$eInicio = $data->eInicio ? (($data->eInicio * 15)-15) : 0;
+$eTermino = ($eInicio>0 ? $eInicio : 1) + 15;
+
+$ePagina = $data->eInicio ? $data->eInicio : 1;
 
 $eLimit = $data->eMaxRegistros ? $data->eMaxRegistros : 250;
 $bOrden = $data->rOrden;
@@ -82,7 +84,7 @@ switch($accion)
         
         $eFilas = mysqli_num_rows(mysqli_query($conexion,$select1));
         
-        $ePaginas = round($eFilas / 10);
+        $ePaginas = round($eFilas / 15);
         
         $select = "SELECT * FROM ($select1) N0 ORDER BY $rdOrden $bOrden LIMIT $eInicio, $eTermino";
 		
@@ -111,14 +113,13 @@ switch($accion)
             //imprimimos
         }
         /* hacemos select */
-        if($ePaginas>1)
-        {
+        
         $tHTML .=   '<tr>'.
-                    '<td colspan="4" align="right">';
-        $tHTML .= $clNav->paginas($data->eInicio,$ePaginas);
+                    '<td colspan="7" align="right">';
+        $tHTML .= $clNav->paginas((int)$ePagina,(int)$ePaginas);
         $tHTML .=   '</td>';
         $tHTML .=   '</tr>';
-        }
+        
         $tHTML .= '</tbody>'.
             '</table>';
         break;

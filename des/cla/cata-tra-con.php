@@ -96,7 +96,7 @@ switch($accion)
         /* hacemos select */
         $select1 = "SELECT * FROM ( ".
             " SELECT ".
-            " bt.eCodTransaccion,bt.eCodEvento, ".
+            " bt.eCodTransaccion, ".
             " bt.fhFecha, bt.eCodEvento, ".
             " cc.tNombres as nombreCliente, ".
             " cc.tApellidos as apellidosCliente, ".

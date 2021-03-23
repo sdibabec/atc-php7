@@ -55,55 +55,50 @@ $(document).ready(function() {
                                 <form id="Datos" name="Datos">
                                     <input type="hidden" name="tAccion" id="tAccion" value="">
                                     <input type="hidden" name="eAccion" id="eAccion" value="">
-                                    <table width="100%" cellpadding="10" class="table table-bordered">
-                                    <tr>
-                                        <td width="25%"></td>
-                                        <td width="25%"></td>
-                                        <td width="25%"></td>
-                                        <td width="25%"></td>
-                                    </tr>
-<tr>
-    <td><label><input type="radio" name="rdOrden" value="eCodInventario" checked="checked"> C&oacute;digo</label></td>
-    <td>
+                                    
+                                    
+<div class="form-row">
+    <div class="form-group col-md-3"><label><input type="radio" name="rdOrden" value="eCodInventario" checked="checked"> C&oacute;digo</label></div>
+    <div class="form-group col-md-3">
         <input type="text" class="form-control" name="eCodInventario" id="eCodInventario">
-    </td>
+    </div>
     <td colspan="2">
-    </td>
-</tr>
-<tr>
-    <td><label><input type="radio" name="rdOrden" value="tNombre"> Nombre</label></td>
-    <td>
+    </div>
+</div>
+<div class="form-row">
+    <div class="form-group col-md-3"><label><input type="radio" name="rdOrden" value="tNombre"> Nombre</label></div>
+    <div class="form-group col-md-3">
         
         <input type="text" class="form-control" id="tNombre" name="tNombre" placeholder="">
-    </td>
-    <td><label> Tipo Inventario</label></td>
-    <td>
+    </div>
+    <div class="form-group col-md-3"><label> Tipo Inventario</label></div>
+    <div class="form-group col-md-3">
         <select id="eCodTipoInventario" name="eCodTipoInventario">
         <option value="">Seleccione...</option>
             <? while($rTipoInventario = mysqli_fetch_array($rsTiposInventario)){ ?>
             <option value="<?=$rTipoInventario{'eCodTipoInventario'};?>"><?=utf8_encode($rTipoInventario{'tNombre'});?></option>
             <? } ?>
         </select>
-    </td>
-</tr>
-<tr>
-    <td>Mostrar</td>
-    <td>
+    </div>
+</div>
+<div class="form-row">
+    <div class="form-group col-md-3">Mostrar</div>
+    <div class="form-group col-md-3">
         <select id="eMaxRegistros" name="eMaxRegistros" >
         <? while($rRegistro = mysqli_fetch_array($rsMaximos)) { ?>
             <option value="<?=$rRegistro{'eRegistros'};?>"><?=$rRegistro{'eRegistros'};?> registros</option>
         <? } ?>
         </select>
-    </td>
-    <td>Orden</td>
-    <td>
+    </div>
+    <div class="form-group col-md-3">Orden</div>
+    <div class="form-group col-md-3">
         <select id="rOrden" name="rOrden" >
         <option value="DESC">Descendente</option>
         <option value="ASC">Ascendente</option>
         </select>
-    </td>
-</tr>
-</table>
+    </div>
+</div>
+
                                     </form>
                                 </div>
                                 

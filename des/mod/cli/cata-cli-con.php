@@ -72,50 +72,45 @@ $(document).ready(function() {
                                 <form id="Datos" name="Datos">
                                     <input type="hidden" name="tAccion" id="tAccion" value="">
                                     <input type="hidden" name="eAccion" id="eAccion" value="">
-                                    <table width="100%" cellpadding="10" class="table">
-                                    <tr hidden>
-                                        <td width="25%"></td>
-                                        <td width="25%"></td>
-                                        <td width="25%"></td>
-                                        <td width="25%"></td>
-                                    </tr>
-<tr>
-    <td><label><input type="radio" name="rdOrden" value="eCodCliente" checked="checked"> C&oacute;digo</label></td>
-    <td>
+                                    
+                                    
+<div class="form-row">
+    <div class="form-group col-md-3"><label><input type="radio" name="rdOrden" value="eCodCliente" checked="checked"> C&oacute;digo</label></div>
+    <div class="form-group col-md-3">
         <input type="text" class="form-control" name="eCodCliente" id="eCodCliente">
-    </td>
-    <td></td>
-    <td>
-    </td>
-</tr>
-<tr>
-    <td><label><input type="radio" name="rdOrden" value="tNombres" checked="checked"> Nombre(s)</label></td>
-    <td>
+    </div>
+    <div class="form-group col-md-3"></div>
+    <div class="form-group col-md-3">
+    </div>
+</div>
+<div class="form-row">
+    <div class="form-group col-md-3"><label><input type="radio" name="rdOrden" value="tNombres" checked="checked"> Nombre(s)</label></div>
+    <div class="form-group col-md-3">
         <input type="text" class="form-control" name="tNombres" id="tNombres">
-    </td>
-    <td><label><input type="radio" name="rdOrden" value="tApellidos" checked="checked"> Apellido(s)</label></td>
-    <td>
+    </div>
+    <div class="form-group col-md-3"><label><input type="radio" name="rdOrden" value="tApellidos" checked="checked"> Apellido(s)</label></div>
+    <div class="form-group col-md-3">
         <input type="text" class="form-control" name="tApellidos" id="tApellidos">
-    </td>
-</tr>
-<tr>
-    <td>Mostrar</td>
-    <td>
+    </div>
+</div>
+<div class="form-row">
+    <div class="form-group col-md-3">Mostrar</div>
+    <div class="form-group col-md-3">
         <select id="eMaxRegistros" name="eMaxRegistros" >
         <? while($rRegistro = mysqli_fetch_array($rsMaximos)) { ?>
             <option value="<?=$rRegistro{'eRegistros'};?>"><?=$rRegistro{'eRegistros'};?> registros</option>
         <? } ?>
         </select>
-    </td>
-    <td>Orden</td>
-    <td>
+    </div>
+    <div class="form-group col-md-3">Orden</div>
+    <div class="form-group col-md-3">
         <select id="rOrden" name="rOrden" >
         <option value="DESC">Descendente</option>
         <option value="ASC">Ascendente</option>
         </select>
-    </td>
-</tr>
-</table>
+    </div>
+</div>
+
                                     </form>
                                 </div>
                                 

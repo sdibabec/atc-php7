@@ -372,7 +372,7 @@ class clNav
     {
         $tHTML = '<option value="">Seleccione...</option>';
         $select = "SELECT * FROM SisMaximosRegistros ORDER BY eRegistros ASC";
-        $rsMaximos = mysqli_query($conexion,$select);
+        $rsMaximos = mysqli_query($this->conexion,$select);
         while($r = mysqli_fetch_array($rsMaximos))
         {
             $tHTML .= '<option value="'.$r{'eRegistros'}.'">'.$r{'eRegistros'}.' registros</option>';
@@ -385,7 +385,7 @@ class clNav
     {
         $tHTML = '<option value="">Seleccione...</option>';
         $select = "SELECT $campo,tNombre FROM CatEstatus WHERE $campo IN (".implode(",",$valores).") ORDER BY eRegistros ASC";
-        $rsEstatus = mysqli_query($conexion,$select);
+        $rsEstatus = mysqli_query($this->conexion,$select);
         while($r = mysqli_fetch_array($rsEstatus))
         {
             $tHTML .= '<option value="'.$r{$campo}.'">'.$r{'tNombre'}.'</option>';

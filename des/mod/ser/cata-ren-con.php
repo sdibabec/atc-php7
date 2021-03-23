@@ -133,14 +133,13 @@ $("#fhFechaConsulta2").datepicker({
 <div class="form-row">
     <div class="form-group col-md-3">Mostrar</div>
     <div class="form-group col-md-3">
-        <select id="eMaxRegistros" name="eMaxRegistros"  class="form-control">
-        <option value="">Seleccione...</option>
+        <select id="eMaxRegistros" name="eMaxRegistros" class="form-control">
         <?=$clNav->maximos();?>
         </select>
     </div>
     <div class="form-group col-md-3">Orden</div>
     <div class="form-group col-md-3">
-        <select id="rOrden" name="rOrden" >
+        <select id="rOrden" name="rOrden" class="form-control">
         <option value="DESC">Descendente</option>
         <option value="ASC">Ascendente</option>
         </select>

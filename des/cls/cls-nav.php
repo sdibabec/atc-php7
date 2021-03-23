@@ -346,7 +346,7 @@ class clNav
             
             for($pagina = $inicio; $pagina<=$limite;$pagina++)
             {
-                $tHTML .= '<li class="page-item '.($pagina==$actual : 'active' : '').'"><a class="page-link" onclick="asignarPagina('.$pagina.');">'.$pagina.'</a></li>';
+                $tHTML .= '<li class="page-item '.($pagina==$actual ? 'active' : '').'"><a class="page-link" onclick="asignarPagina('.$pagina.');">'.$pagina.'</a></li>';
                 //print $pagina.'<br>';
             }
             

@@ -38,7 +38,7 @@ class clSis
         }
 		
 		$select = "SELECT tValor FROM SisVariables WHERE tNombre = 'tURL'";
-        $rCFG = mysqli_fetch_array(mysqli_query($conexion,$this->conexion,$select));
+        $rCFG = mysqli_fetch_array(mysqli_query($this->conexion,$select));
         $this->url = $rCFG{'tValor'};
 	}
 	
@@ -53,20 +53,20 @@ class clSis
 		$tPasswordAcceso = "'".base64_encode($_POST['tPasswordAcceso'])."'";
 		
 		$select = "SELECT * FROM SisUsuarios WHERE eCodEstatus=3 AND tCorreo = $tCorreo AND tPasswordAcceso = $tPasswordAcceso";
-		$rsUsuario = mysqli_query($conexion,$this->conexion,$select);
+		$rsUsuario = mysqli_query($this->conexion,$select);
 		$rUsuario = mysqli_fetch_array($rsUsuario);
         
 		if($rsUsuario)
 		{
 			$_SESSION['sessionAdmin'] = $rUsuario;
-            $rInicio = mysqli_fetch_array(mysqli_query($conexion,$this->conexion,"SELECT * FROM SisSeccionesPerfilesInicio WHERE eCodPerfil = ".$rUsuario{'eCodPerfil'}));
+            $rInicio = mysqli_fetch_array(mysqli_query($this->conexion,"SELECT * FROM SisSeccionesPerfilesInicio WHERE eCodPerfil = ".$rUsuario{'eCodPerfil'}));
             $url = base64_encode($this->generarUrl($rInicio{'tCodSeccion'}));
             
             $pf = fopen("logInicio.txt","w");
             fwrite($pf,$this->generarUrl($rInicio{'tCodSeccion'}));
             fclose($pf);
             
-            mysqli_query($conexion,$this->conexion,"INSERT INTO SisUsuariosAccesos (eCodUsuario, fhFecha) VALUES (".$rUsuario{'eCodUsuario'}.",'".date('Y-m-d H:i:s')."')");
+            mysqli_query($this->conexion,"INSERT INTO SisUsuariosAccesos (eCodUsuario, fhFecha) VALUES (".$rUsuario{'eCodUsuario'}.",'".date('Y-m-d H:i:s')."')");
             
             if($rUsuario{'eCodPerfil'}==4)
             { $this->consultarPromotoria(); }
@@ -90,7 +90,7 @@ class clSis
         //incluimos
 			$fichero = '/des/mod/'.$_GET['tDirectorio'].'/'.$_GET['tCodSeccion'].'.php';
             
-            mysqli_query($conexion,$this->conexion,"INSERT INTO SisUsuariosSeccionesAccesos (eCodUsuario, tCodSeccion,  fhFecha) VALUES (".$_SESSION['sessionAdmin']['eCodUsuario'].",'".$_GET['tCodSeccion']."','".date('Y-m-d H:i:s')."')");
+            mysqli_query($this->conexion,"INSERT INTO SisUsuariosSeccionesAccesos (eCodUsuario, tCodSeccion,  fhFecha) VALUES (".$_SESSION['sessionAdmin']['eCodUsuario'].",'".$_GET['tCodSeccion']."','".date('Y-m-d H:i:s')."')");
 			//echo ($fichero);
 			return include($fichero);
 	}
@@ -99,7 +99,7 @@ class clSis
 	{
 		$tMenu = '';
         $select = "SELECT * FROM CatTiposSecciones ORDER BY ePosicion ASC";
-        $rsTiposSecciones = mysqli_query($conexion,$this->conexion,$select);
+        $rsTiposSecciones = mysqli_query($this->conexion,$select);
         while($rTipoSeccion = mysqli_fetch_array($rsTiposSecciones))
         {
             /* ****** Cargamos las secciones ******** */
@@ -121,7 +121,7 @@ class clSis
             
             
 
-		        $rsMenus = mysqli_query($conexion,$this->conexion,$select);
+		        $rsMenus = mysqli_query($this->conexion,$select);
             
                 $eMenus = (int)mysqli_num_rows($rsMenus);
             
@@ -174,7 +174,7 @@ class clSis
 		$select = 	"SELECT * FROM SisSeccionesPerfiles ".
 					($_SESSION['sessionAdmin']['bAll'] ? "" : " WHERE eCodPerfil = ".$_SESSION['sessionAdmin']['eCodPerfil']." AND tCodSeccion = '".$seccion."'");
 		
-		$rsSeccion = mysqli_query($conexion,$this->conexion,$select);
+		$rsSeccion = mysqli_query($this->conexion,$select);
 		$rSeccion = mysqli_fetch_array($rsSeccion);
 		return $rSeccion{'tCodSeccion'} ? $rSeccion{'tCodSeccion'} : false;
 	}
@@ -184,7 +184,7 @@ class clSis
 		$select = 	"SELECT tTitulo FROM SisSecciones ".
 					" WHERE tCodSeccion = '".$seccion."'";
 		
-		$rsSeccion = mysqli_query($conexion,$this->conexion,$select);
+		$rsSeccion = mysqli_query($this->conexion,$select);
 		$rSeccion = mysqli_fetch_array($rsSeccion);
 		return $rSeccion{'tTitulo'} ? ($rSeccion{'tTitulo'}) : false;
 	}
@@ -196,7 +196,7 @@ class clSis
         $select =   " SELECT ss.tTitulo FROM SisSecciones ss ".
                     " INNER JOIN SisSecciones sp ON sp.tCodPadre = ss.tCodSeccion ".
                     " WHERE sp.tCodSeccion = '".$seccion."' ";
-        $rsSeccionPadre = mysqli_query($conexion,$this->conexion,$select);
+        $rsSeccionPadre = mysqli_query($this->conexion,$select);
 		$rSeccionPadre = mysqli_fetch_array($rsSeccionPadre);
         
         $secciones[] = ($rSeccionPadre{'tTitulo'});
@@ -204,7 +204,7 @@ class clSis
 		$select = 	"SELECT tTitulo,tCodPadre FROM SisSecciones ".
 					" WHERE tCodSeccion = '".$seccion."'";
 		
-		$rsSeccion = mysqli_query($conexion,$this->conexion,$select);
+		$rsSeccion = mysqli_query($this->conexion,$select);
 		$rSeccion = mysqli_fetch_array($rsSeccion);
         
         $secciones[] = ($rSeccion{'tTitulo'});
@@ -217,7 +217,7 @@ class clSis
 		$select = 	"SELECT * FROM SisSeccionesPerfiles ".
 					($_SESSION['sessionAdmin']['bAll'] ? "" : " WHERE eCodPerfil = ".$_SESSION['sessionAdmin']['eCodPerfil']." AND tCodSeccion = '".$seccion."'");
 		
-		$rsSeccion = mysqli_query($conexion,$this->conexion,$select);
+		$rsSeccion = mysqli_query($this->conexion,$select);
 		if(mysqli_num_rows($rsSeccion)<1)
 		{
 			return false;
@@ -256,7 +256,7 @@ class clSis
             eCodUsuario = $eCodUsuario";
         }
         
-        $rsUsuario = mysqli_query($conexion,$this->conexion,$insert);
+        $rsUsuario = mysqli_query($this->conexion,$insert);
         
         return $rsUsuario ? true : false;
     }
@@ -277,7 +277,7 @@ class clSis
             eCodUsuario = $eCodUsuario";
         
         
-        $rsUsuario = mysqli_query($conexion,$this->conexion,$insert);
+        $rsUsuario = mysqli_query($this->conexion,$insert);
         
         $this->cerrarSesion();
         
@@ -300,7 +300,7 @@ class clSis
 		$select = 	"SELECT * FROM SisSeccionesPerfiles ".
 					($bAll ? "" : " WHERE eCodPerfil = ".$_SESSION['sessionAdmin']['eCodPerfil']." AND tCodSeccion = '".$seccion."'");
 		
-		$rsSeccion = mysqli_query($conexion,$this->conexion,$select);
+		$rsSeccion = mysqli_query($this->conexion,$select);
 		$rSeccion = mysqli_fetch_array($rsSeccion);
 		if($rSeccion{'bAll'} || $bAll)
 		{
@@ -321,7 +321,7 @@ class clSis
 		$select = 	"SELECT * FROM SisSeccionesPerfiles ".
 					($bAll ? "" : " WHERE eCodPerfil = ".$_SESSION['sessionAdmin']['eCodPerfil']." AND tCodSeccion = '".$seccion."'");
 		
-		$rsSeccion = mysqli_query($conexion,$this->conexion,$select);
+		$rsSeccion = mysqli_query($this->conexion,$select);
 		$rSeccion = mysqli_fetch_array($rsSeccion);
 		if($rSeccion{'bDelete'} || $bAll)
 		{
@@ -362,20 +362,20 @@ class clSis
         $tSeccion = $base[1];
         
         $select = "SELECT tNombre FROM SisSeccionesReemplazos WHERE tBase = '".$tAccion."'";
-        $rAccion = mysqli_fetch_array(mysqli_query($conexion,$this->conexion,$select));
+        $rAccion = mysqli_fetch_array(mysqli_query($this->conexion,$select));
         
         $select = "SELECT tNombre FROM SisSeccionesReemplazos WHERE tBase = '".$tTipo."'";
-        $rTipo = mysqli_fetch_array(mysqli_query($conexion,$this->conexion,$select));
+        $rTipo = mysqli_fetch_array(mysqli_query($this->conexion,$select));
         
         $select = "SELECT tNombre FROM SisSeccionesReemplazos WHERE tBase = '".$tSeccion."'";
-        $rSeccion = mysqli_fetch_array(mysqli_query($conexion,$this->conexion,$select));*/
+        $rSeccion = mysqli_fetch_array(mysqli_query($this->conexion,$select));*/
         
         $select = "SELECT * FROM SisSecciones WHERE tCodSeccion = '$seccion'";
-        $rsUrlSeccion = mysqli_query($conexion,$this->conexion,$select);
+        $rsUrlSeccion = mysqli_query($this->conexion,$select);
         $rUrlSeccion = mysqli_fetch_array($rsUrlSeccion);
         
         $select = "SELECT tTitulo FROM SisSecciones WHERE tCodSeccion = '$seccion'";
-        $r = mysqli_fetch_array(mysqli_query($conexion,$this->conexion,$select));
+        $r = mysqli_fetch_array(mysqli_query($this->conexion,$select));
         
         $titulo = strtolower(str_replace("+ ","",str_replace(array("á","é","í","ó","ú"),array("a","e","i","o","u"),$r{'tTitulo'})));
         
@@ -389,7 +389,7 @@ class clSis
     public function seccionPadre($seccion)
     {
         $select = "SELECT tCodPadre FROM SisSecciones WHERE tCodSeccion = '$seccion'";
-        $rsSeccion = mysqli_query($conexion,$this->conexion,$select);
+        $rsSeccion = mysqli_query($this->conexion,$select);
         $rSeccion = mysqli_fetch_array($rsSeccion);
         
         return $this->generarURL($rSeccion{'tCodPadre'});
@@ -400,7 +400,7 @@ class clSis
         $variables = array();
         
         $select = " SELECT * FROM SisVariables WHERE tNombre = '$tVariable'";
-        $r = mysqli_fetch_array(mysqli_query($conexion,$this->conexion,$select));
+        $r = mysqli_fetch_array(mysqli_query($this->conexion,$select));
         
         return $r{'tValor'};
     }

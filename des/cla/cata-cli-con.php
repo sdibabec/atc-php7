@@ -88,7 +88,7 @@ switch($accion)
         '</thead>'.
         '<tbody>';
         /* hacemos select */
-        $select = "SELECT * FROM (SELECT 
+        $select1 = "SELECT * FROM (SELECT 
 		cc.*, 
 		ce.tIcono as estatus,
 		su.tNombre as promotor
@@ -102,7 +102,7 @@ switch($accion)
         ($eCodCliente ? " AND cc.eCodCliente = ".$eCodCliente : "").
         ($data->tNombres    ?   $termino    :   "").
         ($data->tApellidos  ?   $termino2   :   "").
-        " ORDER BY cc.$rdOrden $bOrden".
+        //" ORDER BY cc.$rdOrden $bOrden".
         " LIMIT 0, $eLimit ".
 		")N0 ";
         

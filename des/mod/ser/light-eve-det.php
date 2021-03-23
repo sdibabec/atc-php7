@@ -5,8 +5,8 @@ require_once("../../cls/cls-sistema.php");
 session_start();
 
 $select = "SELECT be.*, (cc.tNombres + ' ' + cc.tApellidos) as tNombre FROM BitEventos be INNER JOIN CatClientes cc ON cc.eCodCliente = be.eCodCliente WHERE be.eCodEvento = ".$_GET['eCodEvento'];
-$rsCotizacion = mysql_query($select);
-$rCotizacion = mysql_fetch_array($rsCotizacion);
+$rsCotizacion = mysqli_query($conexion,$select);
+$rCotizacion = mysqli_fetch_array($rsCotizacion);
 
 $bIVA = $rCotizacion{'bIVA'};
 
@@ -21,7 +21,7 @@ $select = "	SELECT
 														
 														LEFT JOIN SisUsuarios su ON su.eCodUsuario = cc.eCodUsuario
                                                         ORDER BY cc.eCodCliente ASC";
-$rsClientes = mysql_query($select);
+$rsClientes = mysqli_query($conexion,$select);
 
 $dHoraExtra = 0;
 
@@ -157,7 +157,7 @@ $dHoraExtra = 0;
                         <tr>
                             <td>
                                  <?
-     while($rCliente = mysql_fetch_array($rsClientes))
+     while($rCliente = mysqli_fetch_array($rsClientes))
 {
          ?>
                   <?=($rCotizacion{'eCodCliente'}==$rCliente{'eCodCliente'}) ? $rCliente{'tNombres'}.' '.$rCliente{'tApellidos'}.' <br>'.$rCliente{'tCorreo'}.'<br>Tel.'.$rCliente{'tTelefonoFijo'}.'<br>Cel.'.$rCliente{'tTelefonoMovil'} : ''?>
@@ -202,9 +202,9 @@ $dHoraExtra = 0;
                                                         FROM CatServicios cs
                                                         INNER JOIN RelEventosPaquetes rep ON rep.eCodServicio = cs.eCodServicio and rep.eCodTipo = 1
                                                         WHERE rep.eCodEvento = ".$_GET['eCodEvento'];
-											$rsPaquetes = mysql_query($select);
+											$rsPaquetes = mysqli_query($conexion,$select);
                                             $dTotalEvento = 0;
-											while($rPaquete = mysql_fetch_array($rsPaquetes))
+											while($rPaquete = mysqli_fetch_array($rsPaquetes))
 											{
                                                 $eCantidad = $rPaquete{'eCantidad'};
                                                 $dHoraExtra = $dHoraExtra + ($rPaquete{'dHoraExtra'}*$eCantidad);
@@ -229,8 +229,8 @@ $dHoraExtra = 0;
                             LEFT JOIN CatSubClasificacionesInventarios cst ON cst.eCodTipoInventario=cti.eCodTipoInventario
                             INNER JOIN RelServiciosInventario rsi ON rsi.eCodInventario=ci.eCodInventario 
                             WHERE rsi.eCodServicio = ".$rPaquete{'eCodServicio'}." ORDER BY cti.ePosicion ASC, cst.ePosicion ASC";
-                                                $rsDesglose = mysql_query($select);
-                                                while($rDesglose = mysql_fetch_array($rsDesglose))
+                                                $rsDesglose = mysqli_query($conexion,$select);
+                                                while($rDesglose = mysqli_fetch_array($rsDesglose))
                                                 {
                                                     ?>
                     <tr class="item"><td colspan="2">(<?=($rDesglose{'ePiezas'}*$eCantidad)?>) <?=($rDesglose{'tNombre'})?></td></tr>
@@ -251,9 +251,9 @@ $dHoraExtra = 0;
                                                         FROM CatInventario cs
                                                         INNER JOIN RelEventosPaquetes rep ON rep.eCodServicio = cs.eCodInventario and rep.eCodTipo = 2
                                                         WHERE rep.eCodEvento = ".$_GET['eCodEvento'];
-											$rsInventario = mysql_query($select);
+											$rsInventario = mysqli_query($conexion,$select);
                                             
-											while($rInventario = mysql_fetch_array($rsInventario))
+											while($rInventario = mysqli_fetch_array($rsInventario))
 											{
 												?>
 											<tr class="item">
@@ -277,9 +277,9 @@ $dHoraExtra = 0;
                                                         FROM RelEventosExtras
                                                         WHERE eCodEvento = ".$_GET['eCodEvento'].
                                                 " ORDER BY bSuma ASC, tDescripcion ASC";
-											$rsExtras = mysql_query($select);
+											$rsExtras = mysqli_query($conexion,$select);
                                             
-											while($rExtra = mysql_fetch_array($rsExtras))
+											while($rExtra = mysqli_fetch_array($rsExtras))
 											{
 												?>
 											<tr class="item">

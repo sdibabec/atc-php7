@@ -4,8 +4,8 @@
 
 session_start();
 $select = "SELECT * FROM CatServicios WHERE eCodServicio = ".$_GET['v1'];
-$rsPaquete = mysql_query($select);
-$rPaquete = mysql_fetch_array($rsPaquete);
+$rsPaquete = mysqli_query($conexion,$select);
+$rPaquete = mysqli_fetch_array($rsPaquete);
 ?>
 <div class="row">
                             <div class="col-lg-12 card">
@@ -51,11 +51,11 @@ $rPaquete = mysql_fetch_array($rsPaquete);
                     INNER JOIN RelServiciosInventario ri ON ri.eCodInventario=ci.eCodInventario
                     WHERE ri.eCodServicio=".$rPaquete{'eCodServicio'}.
             " ORDER BY ct.ePosicion ASC";
-        $rsInventario = mysql_query($select);
+        $rsInventario = mysqli_query($conexion,$select);
         $tInventario = "";
     ?>
         <table class="table table-hover" width="100%">
-        <? while($rInventario = mysql_fetch_array($rsInventario)) { ?>
+        <? while($rInventario = mysqli_fetch_array($rsInventario)) { ?>
         <? if($tInventario!=$rInventario{'tTipoInventario'}) { ?>
         <tr>
             <td colspan="2"><b><?=utf8_encode($rInventario{'tTipoInventario'});?></b></td>

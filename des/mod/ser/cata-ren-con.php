@@ -10,20 +10,20 @@ $bDelete = $_SESSION['bDelete'];
 
 if($_GET['eCodEvento'])
 {
-    mysql_query("UPDATE BitEventos SET eCodEstatus = ".$_GET['eAccion']." WHERE eCodEvento =".$_GET['eCodEvento']);
+    mysqli_query($conexion,"UPDATE BitEventos SET eCodEstatus = ".$_GET['eAccion']." WHERE eCodEvento =".$_GET['eCodEvento']);
     
         $fhFecha = "'".date('Y-m-d H:i:s')."'";
         $tDescripcion = "Se ha ".(($_GET['eAccion']==4) ? 'CANCELADO' : 'FINALIZADO')." el evento ".sprintf("%07d",$_GET['eCodEvento']);
         $tDescripcion = "'".$tDescripcion."'";
         $eCodUsuario = $_SESSION['sessionAdmin']['eCodUsuario'];
-        mysql_query("INSERT INTO SisLogs (eCodUsuario, fhFecha, tDescripcion) VALUES ($eCodUsuario, $fhFecha, $tDescripcion)");
+        mysqli_query($conexion,"INSERT INTO SisLogs (eCodUsuario, fhFecha, tDescripcion) VALUES ($eCodUsuario, $fhFecha, $tDescripcion)");
     
     echo '<script>window.location="?tCodSeccion=cata-eve-con";</script>';
               
 }
 
 $select = "SELECT * FROM SisMaximosRegistros ORDER BY eRegistros ASC";
-$rsMaximos = mysql_query($select);
+$rsMaximos = mysqli_query($conexion,$select);
         
 $select = "SELECT DISTINCT
 	ce.tNombre tEstatus,
@@ -35,7 +35,7 @@ FROM
     ($_SESSION['sessionAdmin']['bAll'] ? "" : " AND eCodEstatus<>4").
 " ORDER BY
 	ce.tNombre ASC";
-$rsEstatus = mysql_query($select);
+$rsEstatus = mysqli_query($conexion,$select);
 
 ?>
 <script>
@@ -120,7 +120,7 @@ $("#fhFechaConsulta2").datepicker({
     <td>
         <select id="eCodEstatus" name="eCodEstatus" >
         <option value="">Seleccione...</option>
-        <? while($rEstatus = mysql_fetch_array($rsEstatus)) { ?>
+        <? while($rEstatus = mysqli_fetch_array($rsEstatus)) { ?>
             <option value="<?=$rEstatus{'eCodEstatus'};?>"><?=$rEstatus{'tEstatus'};?></option>
         <? } ?>
         </select>
@@ -138,7 +138,7 @@ $("#fhFechaConsulta2").datepicker({
     <td>Mostrar</td>
     <td>
         <select id="eMaxRegistros" name="eMaxRegistros" >
-        <? while($rRegistro = mysql_fetch_array($rsMaximos)) { ?>
+        <? while($rRegistro = mysqli_fetch_array($rsMaximos)) { ?>
             <option value="<?=$rRegistro{'eRegistros'};?>"><?=$rRegistro{'eRegistros'};?> registros</option>
         <? } ?>
         </select>

@@ -310,7 +310,7 @@ else
                                            <?
                                            $fichero = './des/mod/'.$_GET['tDirectorio'].'/'.$_GET['tCodSeccion'].'.php';
             
-            mysqli_query($conexion,$conexion,"INSERT INTO SisUsuariosSeccionesAccesos (eCodUsuario, tCodSeccion,  fhFecha) VALUES (".$_SESSION['sessionAdmin']['eCodUsuario'].",'".$_GET['tCodSeccion']."','".date('Y-m-d H:i:s')."')");
+            mysqli_query($conexion,"INSERT INTO SisUsuariosSeccionesAccesos (eCodUsuario, tCodSeccion,  fhFecha) VALUES (".$_SESSION['sessionAdmin']['eCodUsuario'].",'".$_GET['tCodSeccion']."','".date('Y-m-d H:i:s')."')");
 			//echo ($fichero);
 			include($fichero);
                                            ?>

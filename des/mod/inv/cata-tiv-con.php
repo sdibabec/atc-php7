@@ -14,7 +14,7 @@ if($_GET['bEliminar']==1)
     
         $update = "DELETE FROM CatServicios WHERE eCodServicio = ".$_GET['eCodServicio'];
     
-    mysql_query($update);
+    mysqli_query($conexion,$update);
     echo '<script>window.location="?tCodSeccion='.$_GET['tCodSeccion'].'";</script>';
 }
 
@@ -42,8 +42,8 @@ $bDelete = $_SESSION['bAll'];
 														FROM
 															CatTiposInventario
 														ORDER BY tNombre ASC";
-											$rsPublicaciones = mysql_query($select);
-											while($rPublicacion = mysql_fetch_array($rsPublicaciones))
+											$rsPublicaciones = mysqli_query($conexion,$select);
+											while($rPublicacion = mysqli_fetch_array($rsPublicaciones))
 											{
                                                 
                                                 $mostrar = (!$bDelete) ? 'style="display:none;"' : '';

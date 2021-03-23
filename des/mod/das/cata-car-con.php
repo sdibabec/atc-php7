@@ -10,13 +10,13 @@ $bDelete = $_SESSION['bDelete'];
 
 if($_GET['eCodEvento'])
 {
-    mysql_query("UPDATE BitEventos SET eCodEstatus = ".$_GET['eAccion']." WHERE eCodEvento =".$_GET['eCodEvento']);
+    mysqli_query($conexion,"UPDATE BitEventos SET eCodEstatus = ".$_GET['eAccion']." WHERE eCodEvento =".$_GET['eCodEvento']);
     
         $fhFecha = "'".date('Y-m-d H:i:s')."'";
         $tDescripcion = "Se ha ".(($_GET['eAccion']==4) ? 'CANCELADO' : 'FINALIZADO')." el evento ".sprintf("%07d",$_GET['eCodEvento']);
         $tDescripcion = "'".$tDescripcion."'";
         $eCodUsuario = $_SESSION['sessionAdmin']['eCodUsuario'];
-        mysql_query("INSERT INTO SisLogs (eCodUsuario, fhFecha, tDescripcion) VALUES ($eCodUsuario, $fhFecha, $tDescripcion)");
+        mysqli_query($conexion,"INSERT INTO SisLogs (eCodUsuario, fhFecha, tDescripcion) VALUES ($eCodUsuario, $fhFecha, $tDescripcion)");
     
     echo '<script>window.location="?tCodSeccion=cata-eve-con";</script>';
               
@@ -60,18 +60,18 @@ function ruta(codigo)
 											$select = "SELECT sec.*, su.tNombre, su.tApellidos FROM SisRegistrosCargas sec INNER JOIN SisUsuarios su ON su.eCodUsuario=sec.eCodUsuario ORDER BY sec.eCodRegistro DESC";
 											
 											//echo $select;
-											$rsPublicaciones = mysql_query($select);
+											$rsPublicaciones = mysqli_query($conexion,$select);
 											
 //echo $select;
 
-while($rPublicacion = mysql_fetch_array($rsPublicaciones))
+while($rPublicacion = mysqli_fetch_array($rsPublicaciones))
 											{
     $edicion = ($clSistema->validarEnlace('oper-eve-reg'))  ? '' : 'style="display:none;" disabled';
     $detalle = ($clSistema->validarEnlace('cata-eve-det'))  ? '' : 'style="display:none;" disabled';
     $ruta    = ($_SESSION['sessionAdmin']['bAll'])       ? '' : 'style="display:none;" disabled';
     $bloqueo = $bAll ? '' : 'style="display:none;" disabled';
     
-    $bCargado = (mysql_num_rows(mysql_query("SELECT * FROM SisRegistrosCargas WHERE eCodEvento = ".$rPublicacion{'eCodEvento'}))) ? true : false;
+    $bCargado = (mysqli_num_rows(mysqli_query($conexion,"SELECT * FROM SisRegistrosCargas WHERE eCodEvento = ".$rPublicacion{'eCodEvento'}))) ? true : false;
     
 												?>
 											<tr>

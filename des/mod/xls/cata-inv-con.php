@@ -18,13 +18,13 @@ $writer->setAuthor('Antro en tu Casa');
 $select = "SELECT ci.*, cti.tNombre tTipoInventario FROM CatInventario ci INNER JOIN CatTiposInventario cti ON cti.eCodTipoInventario=ci.eCodTipoInventario WHERE 1=1 ". 
             ($_GET['v1'] ? " AND ci.eCodInventario = ".$_GET['v1'] : "");
 
-$rsPaquetes = mysql_query($select);
+$rsPaquetes = mysqli_query($conexion,$select);
 
 
 $row = array('Código','Tipo','Nombre','Marca','Descripción','Precio Interno','Precio Venta','Piezas');
  $writer->writeSheetRow('Sheet1', $row);
 
-while($rPaquete = mysql_fetch_array($rsPaquetes))
+while($rPaquete = mysqli_fetch_array($rsPaquetes))
 {
     
     $row = array(

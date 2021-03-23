@@ -32,8 +32,8 @@ $bDelete = $_SESSION['bDelete'];
                                             
                                            
                                             
-											$rsPublicaciones = mysql_query($select);
-											while($rPublicacion = mysql_fetch_array($rsPublicaciones))
+											$rsPublicaciones = mysqli_query($conexion,$select);
+											while($rPublicacion = mysqli_fetch_array($rsPublicaciones))
 											{
 												?>
 											<tr>

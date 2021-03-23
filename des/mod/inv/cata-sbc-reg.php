@@ -10,8 +10,8 @@ FROM
 	CatSubClasificacionesInventarios ci
 WHERE ci.eCodSubclasificacion = ".$_GET['v1'];
 //echo $select;
-$rsPublicacion = mysql_query($select);
-$rPublicacion = mysql_fetch_array($rsPublicacion);
+$rsPublicacion = mysqli_query($conexion,$select);
+$rPublicacion = mysqli_fetch_array($rsPublicacion);
 
 ?>
 <?
@@ -61,8 +61,8 @@ setTimeout(function(){
                                                <select class="form-control" id="eCodTipoInventario" name="eCodTipoInventario">
                                                 <option value="">Seleccione...</option>
                                                    <? $select = "SELECT * FROM CatTiposInventario ORDER BY ePosicion ASC";
-                                                        $rsTipos = mysql_query($select);
-                                                        while($rTipo = mysql_fetch_array($rsTipos)) {?>
+                                                        $rsTipos = mysqli_query($conexion,$select);
+                                                        while($rTipo = mysqli_fetch_array($rsTipos)) {?>
                                                    <option value="<?=$rTipo{'eCodTipoInventario'};?>" <?=(($rTipo{'eCodTipoInventario'}==$rPublicacion{'eCodTipoInventario'}) ? 'selected="selected"' : '' );?>><?=$rTipo{'tNombre'};?></option>
                                                    <? } ?>
                                                 </select>

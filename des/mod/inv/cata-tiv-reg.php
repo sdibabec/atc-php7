@@ -10,8 +10,8 @@ FROM
 	CatTiposInventario ci
 WHERE ci.eCodTipoInventario = ".$_GET['v1'];
 //echo $select;
-$rsPublicacion = mysql_query($select);
-$rPublicacion = mysql_fetch_array($rsPublicacion);
+$rsPublicacion = mysqli_query($conexion,$select);
+$rPublicacion = mysqli_fetch_array($rsPublicacion);
 
 ?>
 <?

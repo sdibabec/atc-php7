@@ -5,8 +5,8 @@
 session_start();
 
 $select = "SELECT * FROM CatServicios WHERE eCodServicio = ".$_GET['v1'];
-$rsPublicacion = mysql_query($select);
-$rPublicacion = mysql_fetch_array($rsPublicacion);
+$rsPublicacion = mysqli_query($conexion,$select);
+$rPublicacion = mysqli_fetch_array($rsPublicacion);
 
 ?>
 
@@ -160,9 +160,9 @@ var eHoras = document.getElementById("eHoras");
 														FROM
 															CatInventario ci
 															INNER JOIN RelServiciosInventario cti ON cti.eCodInventario = ci.eCodInventario AND cti.eCodServicio = ".$_GET['v1'];
-											$rsPublicaciones = mysql_query($select);
+											$rsPublicaciones = mysqli_query($conexion,$select);
 		   									$b = 0;
-											while($rPublicacion = mysql_fetch_array($rsPublicaciones))
+											while($rPublicacion = mysqli_fetch_array($rsPublicaciones))
 											{
 												?>
 											<tr id="inv<?=$b;?>">

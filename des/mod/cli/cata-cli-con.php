@@ -11,9 +11,9 @@ $bDelete = $_SESSION['bAll'];
 if($_GET['bEliminar']==1)
 {
     $select = "SELECT * FROM BitEventos WHERE eCodCliente = ".$_GET['eCodCliente'];
-    $rs = mysql_query($select);
+    $rs = mysqli_query($conexion,$select);
     
-    if(mysql_num_rows($rs)>0)
+    if(mysqli_num_rows($rs)>0)
     {
         $update = "UPDATE CatClientes SET eCodEstatus=7 WHERE eCodCliente = ".$_GET['eCodCliente'];
     }
@@ -21,12 +21,12 @@ if($_GET['bEliminar']==1)
     {
         $update = "DELETE FROM CatClientes WHERE eCodCliente = ".$_GET['eCodCliente'];
     }
-    mysql_query($update);
+    mysqli_query($conexion,$update);
     echo '<script>window.location="?tCodSeccion='.$_GET['tCodSeccion'].'";</script>';
 }
 
 $select = "SELECT * FROM SisMaximosRegistros ORDER BY eRegistros ASC";
-$rsMaximos = mysql_query($select);
+$rsMaximos = mysqli_query($conexion,$select);
         
 $select = "SELECT DISTINCT
 	ce.tNombre tEstatus,
@@ -38,7 +38,7 @@ FROM
     ($_SESSION['sessionAdmin']['bAll'] ? "" : " AND eCodEstatus<>4").
 " ORDER BY
 	ce.tNombre ASC";
-$rsEstatus = mysql_query($select);
+$rsEstatus = mysqli_query($conexion,$select);
 
 ?>
 <script>
@@ -102,7 +102,7 @@ $(document).ready(function() {
     <td>Mostrar</td>
     <td>
         <select id="eMaxRegistros" name="eMaxRegistros" >
-        <? while($rRegistro = mysql_fetch_array($rsMaximos)) { ?>
+        <? while($rRegistro = mysqli_fetch_array($rsMaximos)) { ?>
             <option value="<?=$rRegistro{'eRegistros'};?>"><?=$rRegistro{'eRegistros'};?> registros</option>
         <? } ?>
         </select>

@@ -5,8 +5,8 @@
 session_start();
 
 $select = "SELECT * FROM CatClientes WHERE eCodCliente = ".$_GET['v1'];
-$rsPublicacion = mysql_query($select);
-$rPublicacion = mysql_fetch_array($rsPublicacion);
+$rsPublicacion = mysqli_query($conexion,$select);
+$rPublicacion = mysqli_fetch_array($rsPublicacion);
 
 ?>
 <?

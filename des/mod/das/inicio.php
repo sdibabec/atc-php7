@@ -51,7 +51,7 @@ $fhFechaTermino = "'".$fhFechaTermino."'";
 												        ($bAll ? "" : " AND cc.eCodUsuario = ".$_SESSION['sessionAdmin']['eCodUsuario']).
 														" ORDER BY be.fhFechaEvento DESC";
 														
-$rsEventos = mysql_query($select);
+$rsEventos = mysqli_query($conexion,$select);
     ?>
     
     <div class="col-md-6">
@@ -68,9 +68,9 @@ $rsEventos = mysql_query($select);
                                     </div>
                                     <div class="card-body">
                                         <?
-                                                if(mysql_num_rows($rsEventos))
+                                                if(mysqli_num_rows($rsEventos))
                                                 {
-                                                    while($rEvento = mysql_fetch_array($rsEventos))
+                                                    while($rEvento = mysqli_fetch_array($rsEventos))
                                                     {
                                                         $activa = $_SESSION['sessionAdmin']['bAll'] ? '' : 'disabled';
                                                         ?>

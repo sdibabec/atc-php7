@@ -9,15 +9,15 @@ $bDelete = $_SESSION['bDelete'];
 
 if($_GET['eCodInventario'])
 {
-    mysql_query("DELETE FROM CatInventario WHERE eCodInventario =".$_GET['eCodInventario']);
+    mysqli_query($conexion,"DELETE FROM CatInventario WHERE eCodInventario =".$_GET['eCodInventario']);
     echo '<script>window.location="?tCodSeccion=cata-inv-con";</script>';
 }
 
 $select = "SELECT * FROM CatTiposInventario";
-$rsTiposInventario = mysql_query($select);
+$rsTiposInventario = mysqli_query($conexion,$select);
 
 $select = "SELECT * FROM SisMaximosRegistros ORDER BY eRegistros ASC";
-$rsMaximos = mysql_query($select);
+$rsMaximos = mysqli_query($conexion,$select);
 
 //$bAll = $clSistema->validarPermiso(obtenerScript());
 //$bDelete = $clSistema->validarEliminacion(obtenerScript());
@@ -80,7 +80,7 @@ $(document).ready(function() {
     <td>
         <select id="eCodTipoInventario" name="eCodTipoInventario">
         <option value="">Seleccione...</option>
-            <? while($rTipoInventario = mysql_fetch_array($rsTiposInventario)){ ?>
+            <? while($rTipoInventario = mysqli_fetch_array($rsTiposInventario)){ ?>
             <option value="<?=$rTipoInventario{'eCodTipoInventario'};?>"><?=utf8_encode($rTipoInventario{'tNombre'});?></option>
             <? } ?>
         </select>
@@ -90,7 +90,7 @@ $(document).ready(function() {
     <td>Mostrar</td>
     <td>
         <select id="eMaxRegistros" name="eMaxRegistros" >
-        <? while($rRegistro = mysql_fetch_array($rsMaximos)) { ?>
+        <? while($rRegistro = mysqli_fetch_array($rsMaximos)) { ?>
             <option value="<?=$rRegistro{'eRegistros'};?>"><?=$rRegistro{'eRegistros'};?> registros</option>
         <? } ?>
         </select>

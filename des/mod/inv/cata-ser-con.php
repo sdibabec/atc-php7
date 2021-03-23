@@ -14,7 +14,7 @@ if($_GET['bEliminar']==1)
     
         $update = "DELETE FROM CatServicios WHERE eCodServicio = ".$_GET['eCodServicio'];
     
-    mysql_query($update);
+    mysqli_query($conexion,$update);
     echo '<script>window.location="?tCodSeccion='.$_GET['tCodSeccion'].'";</script>';
 }
 
@@ -22,7 +22,7 @@ $bAll = $_SESSION['bAll'];
 $bDelete = $_SESSION['bAll'];
 
 $select = "SELECT * FROM SisMaximosRegistros ORDER BY eRegistros ASC";
-$rsMaximos = mysql_query($select);
+$rsMaximos = mysqli_query($conexion,$select);
 
 ?>
  
@@ -118,7 +118,7 @@ $(document).ready(function() {
     <td>Mostrar</td>
     <td>
         <select id="eMaxRegistros" name="eMaxRegistros" >
-        <? while($rRegistro = mysql_fetch_array($rsMaximos)) { ?>
+        <? while($rRegistro = mysqli_fetch_array($rsMaximos)) { ?>
             <option value="<?=$rRegistro{'eRegistros'};?>"><?=$rRegistro{'eRegistros'};?> registros</option>
         <? } ?>
         </select>

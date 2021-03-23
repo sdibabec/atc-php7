@@ -20,7 +20,7 @@ class clNav
     public function obtenerURL()
     {
         $select   = "SELECT tValor FROM SisVariables WHERE tNombre = 'tURL'";
-        $rCFG     = mysqli_fetch_array(mysqli_query($this->conexion,$select));
+        $rCFG     = mysqli_fetch_array(mysqli_query($conexion,$this->conexion,$select));
         return $rCFG{'tValor'};
     }
     
@@ -32,7 +32,7 @@ class clNav
         $tSeccion = $base[1];
         
         $select  = "SELECT tTitulo, tDirectorio FROM SisSecciones WHERE tCodSeccion = '" . $seccion . "'";
-        $rAccion = mysqli_fetch_array(mysqli_query($this->conexion,$select));
+        $rAccion = mysqli_fetch_array(mysqli_query($conexion,$this->conexion,$select));
         
         
         $url = 'apl/' . ($rAccion['tDirectorio'] ? $rAccion['tDirectorio'] : $_GET['tDirectorio']) . '/' . $seccion . '/' . $this->generarTitulo($seccion) . '/' . ($codigo ? 'v1/' . $codigo . '/' : '');
@@ -50,16 +50,16 @@ class clNav
         $tSeccion = $base[1];
         
         $select  = "SELECT tNombre FROM SisSeccionesReemplazos WHERE tBase = '" . $tAccion . "'";
-        $rAccion = mysqli_fetch_array(mysqli_query($this->conexion,$select));
+        $rAccion = mysqli_fetch_array(mysqli_query($conexion,$this->conexion,$select));
         
         $select = "SELECT tNombre FROM SisSeccionesReemplazos WHERE tBase = '" . $tTipo . "'";
-        $rTipo  = mysqli_fetch_array(mysqli_query($this->conexion,$select));
+        $rTipo  = mysqli_fetch_array(mysqli_query($conexion,$this->conexion,$select));
         
         $select   = "SELECT tNombre FROM SisSeccionesReemplazos WHERE tBase = '" . $tSeccion . "'";
-        $rSeccion = mysqli_fetch_array(mysqli_query($this->conexion,$select));
+        $rSeccion = mysqli_fetch_array(mysqli_query($conexion,$this->conexion,$select));
         
         $select = "SELECT tTitulo FROM SisSecciones WHERE tCodSeccion = '$seccion'";
-        $r      = mysqli_fetch_array(mysqli_query($this->conexion,$select));
+        $r      = mysqli_fetch_array(mysqli_query($conexion,$this->conexion,$select));
         
         $titulo = str_replace("+ ", "", str_replace(array("á","é","í","ó","ú"), array("a","e","i","o","u"), $r{'tTitulo'}));
         
@@ -77,7 +77,7 @@ class clNav
         $bAll   = $_SESSION['sessionAdmin']['bAll'];
         $select = "SELECT * FROM SisSeccionesPerfiles " . ($bAll ? "" : " WHERE eCodPerfil = " . $_SESSION['sessionAdmin']['eCodPerfil'] . " AND tCodSeccion = '" . $seccion . "'");
         
-        $rsSeccion = mysqli_query($this->conexion,$select);
+        $rsSeccion = mysqli_query($conexion,$this->conexion,$select);
         $rSeccion  = mysqli_fetch_array($rsSeccion);
         if ($rSeccion{'bDelete'} || $bAll) {
             return true;
@@ -105,7 +105,7 @@ class clNav
                     1=1 " . ($_SESSION['sessionAdmin']['bAll'] ? "" : " AND ssp.eCodPerfil = " . $_SESSION['sessionAdmin']['eCodPerfil']) . " AND ssb.tCodPadre = '" . $tCodSeccion . "'" . " ORDER BY ssb.ePosicion ASC ";
         
         //echo $select;
-        $rsBotones = mysqli_query($this->conexion,$select);
+        $rsBotones = mysqli_query($conexion,$this->conexion,$select);
         while ($rBoton = mysqli_fetch_array($rsBotones)) {
             $accion = ($rBoton{'tAccion'}) ? $rBoton{'tAccion'} : false;
             
@@ -172,7 +172,7 @@ class clNav
     <?
         
         //echo $select;
-        $rsBotones = mysqli_query($this->conexion,$select);
+        $rsBotones = mysqli_query($conexion,$this->conexion,$select);
         while ($rBoton = mysqli_fetch_array($rsBotones)) {
             $accion  = ($rBoton{'tAccion'}) ? $rBoton{'tAccion'} : false;
             $seccion = $this->generarUrl($rBoton{'tCodSeccion'}, true, $accion, sprintf("%07d", $codigo));
@@ -236,7 +236,7 @@ class clNav
         
         
         //echo $select;
-        $rsBotones = mysqli_query($this->conexion,$select);
+        $rsBotones = mysqli_query($conexion,$this->conexion,$select);
         while ($rBoton = mysqli_fetch_array($rsBotones)) {
             $accion  = ($rBoton{'tAccion'}) ? $rBoton{'tAccion'} : false;
             $seccion = $this->generarUrl($rBoton{'tCodSeccion'}, true, $accion, sprintf("%07d", $codigo));
@@ -287,7 +287,7 @@ class clNav
         
         $select = "SELECT tTitulo,tCodPadre FROM SisSecciones " . " WHERE tCodSeccion = '" . $seccion . "'";
         
-        $rsSeccion = mysqli_query($this->conexion,$select);
+        $rsSeccion = mysqli_query($conexion,$this->conexion,$select);
         $rSeccion  = mysqli_fetch_array($rsSeccion);
         
         $_SESSION['sesionNavegacion'][] = ($rSeccion{'tTitulo'});

@@ -16,8 +16,8 @@ $rows = array();
 $rows[] = array('Nombre','Apellidos','E-mail','Tel.','Cel.');
 
 $select = "SELECT DISTINCT cc.* FROM CatClientes cc WHERE cc.eCodCliente IN (SELECT eCodCliente FROM BitEventos WHERE eCodEstatus=8 AND MONTH(fhFechaEvento) = ".$_POST['eMes'].")";
-$rsClientes = mysql_query($select);
-while($rCliente = mysql_fetch_array($rsClientes))
+$rsClientes = mysqli_query($conexion,$select);
+while($rCliente = mysqli_fetch_array($rsClientes))
 {
     $rows[] = array($rCliente{'tNombres'},$rCliente{'tApellidos'},$rCliente{'tCorreo'},$rCliente{'tTelefonoFijo'},$rCliente{'tTelefonoMovil'});
 }

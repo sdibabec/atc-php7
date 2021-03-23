@@ -13,8 +13,8 @@ $clSistema = new clSis();
 $v1 = ($_GET['v1']);
 
 $select = " SELECT cc.tNombre, cc.tApellidos, cc.tPerfil, bs.fhFecha, bs.eCodSolicitud, bs.tResumen, cc.fhFechaNacimiento FROM BitSolicitudesAnalisis bs INNER JOIN CatClientes cc ON cc.eCodCliente = bs.eCodCliente WHERE bs.eCodSolicitud = ".$v1;
-$rs = mysql_query($select);
-$rDetalle = mysql_fetch_array($rs);
+$rs = mysqli_query($conexion,$select);
+$rDetalle = mysqli_fetch_array($rs);
 
 $opciones = array(
   'http'=>array(

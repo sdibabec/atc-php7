@@ -12,8 +12,8 @@ $bAll = $_SESSION['bAll'];
 $bDelete = $_SESSION['bDelete'];
 
 $select = "SELECT be.*, cc.tNombres, cc.tApellidos, cc.bLibre, cc.bFrecuente FROM BitEventos be INNER JOIN CatClientes cc ON cc.eCodCliente = be.eCodCliente WHERE be.eCodEstatus IN (1,2) AND be.eCodEvento = ".$_GET['v1'];
-$rsPublicacion = mysql_query($select);
-$rPublicacion = mysql_fetch_array($rsPublicacion);
+$rsPublicacion = mysqli_query($conexion,$select);
+$rPublicacion = mysqli_fetch_array($rsPublicacion);
 
 
 
@@ -181,9 +181,9 @@ $horas[] = array('23:30','23:30 - 04:30');
                                                         FROM CatServicios cs
                                                         INNER JOIN RelEventosPaquetes rep ON rep.eCodServicio = cs.eCodServicio AND rep.eCodTipo = 1
                                                         WHERE rep.eCodEvento = ".$_GET['v1'];
-											$rsProductos = mysql_query($select);
+											$rsProductos = mysqli_query($conexion,$select);
                                             
-											while($rProducto = mysql_fetch_array($rsProductos))
+											while($rProducto = mysqli_fetch_array($rsProductos))
 											{
 												?>
 											<tr id="paq<?=$i?>">
@@ -270,9 +270,9 @@ $horas[] = array('23:30','23:30 - 04:30');
                                                         FROM CatInventario cs
                                                         INNER JOIN RelEventosPaquetes rep ON rep.eCodServicio = cs.eCodInventario and rep.eCodTipo = 2
                                                         WHERE rep.eCodEvento = ".$_GET['v1'];
-											$rsProductos = mysql_query($select);
+											$rsProductos = mysqli_query($conexion,$select);
                                             
-											while($rProducto = mysql_fetch_array($rsProductos))
+											while($rProducto = mysqli_fetch_array($rsProductos))
 											{
 												?>
 											<tr id="inv<?=$i?>">
@@ -336,9 +336,9 @@ $horas[] = array('23:30','23:30 - 04:30');
 											$select = "	SELECT *
                                                         FROM RelEventosExtras
                                                         WHERE eCodEvento = ".$_GET['v1'];
-											$rsPublicaciones = mysql_query($select);
+											$rsPublicaciones = mysqli_query($conexion,$select);
                                             
-											while($rPublicacion = mysql_fetch_array($rsPublicaciones))
+											while($rPublicacion = mysqli_fetch_array($rsPublicaciones))
 											{
 												?>
 											<tr id="ext<?=$i?>">

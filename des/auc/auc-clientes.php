@@ -9,8 +9,8 @@ header('Content-Type: application/json');
 $paquetes = array();
 
 $select = "SELECT * FROM CatClientes";
-$rsPaquetes = mysql_query($select);
-while($rPaquete = mysql_fetch_array($rsPaquetes))
+$rsPaquetes = mysqli_query($conexion,$select);
+while($rPaquete = mysqli_fetch_array($rsPaquetes))
 {
 <<<<<<< HEAD
 	$paquetes[] = array('codigo'=>$rPaquete{'eCodCliente'},'nombre'=>$rPaquete{'tNombres'}.' '.$rPaquete{'tApellidos'}.' ('.$rPaquete{'tCorreo'}.')');

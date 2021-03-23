@@ -18,13 +18,13 @@ $writer->setAuthor('Antro en tu Casa');
 $select = "SELECT * FROM CatServicios WHERE 1=1 ". 
             ($_GET['v1'] ? " AND eCodServicio = ".$_GET['v1'] : "");
 
-$rsPaquetes = mysql_query($select);
+$rsPaquetes = mysqli_query($conexion,$select);
 
 
 $row = array('Código','Nombre','Descripción','Precio Venta','Hora Extra');
  $writer->writeSheetRow('Sheet1', $row);
 
-while($rPaquete = mysql_fetch_array($rsPaquetes))
+while($rPaquete = mysqli_fetch_array($rsPaquetes))
 {
     
     $row = array(sprintf("%07d",$rPaquete{'eCodServicio'}),utf8_encode($rPaquete{'tNombre'}),base64_decode($rPaquete{'tDescripcion'}),$rPaquete{'dPrecioVenta'},$rPaquete{'dHoraExtra'});
@@ -43,8 +43,8 @@ while($rPaquete = mysql_fetch_array($rsPaquetes))
 					WHERE
 					 rti.eCodServicio = ".$rPaquete{'eCodServicio'}."
 					ORDER BY cti.ePosicion ASC, ci.tNombre ASC";
-    $rsDesgloses = mysql_query($select);
-    while($rDesglose = mysql_fetch_array($rsDesgloses))
+    $rsDesgloses = mysqli_query($conexion,$select);
+    while($rDesglose = mysqli_fetch_array($rsDesgloses))
     {
         $desglose = array('*',$rDesglose{'unidad'},utf8_decode($rDesglose{'tipo'}),($rDesglose{'tNombre'}),utf8_decode($rDesglose{'tMarca'}));
         $writer->writeSheetRow('Sheet1', $desglose);

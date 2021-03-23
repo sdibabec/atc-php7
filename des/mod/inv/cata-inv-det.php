@@ -10,8 +10,8 @@ FROM
 	CatInventario ci
 	INNER JOIN CatTiposInventario cti
 WHERE ci.eCodInventario = ".$_GET['v1'];
-$rsCliente = mysql_query($select);
-$rCliente = mysql_fetch_array($rsCliente);
+$rsCliente = mysqli_query($conexion,$select);
+$rCliente = mysqli_fetch_array($rsCliente);
 ?>
 <div class="row">
                             <div class="col-lg-12">

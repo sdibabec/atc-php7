@@ -5,8 +5,8 @@
 session_start();
 
 $select = "SELECT * FROM CatCamionetas WHERE eCodCamioneta = ".$_GET['v1'];
-$rsPublicacion = mysql_query($select);
-$rPublicacion = mysql_fetch_array($rsPublicacion);
+$rsPublicacion = mysqli_query($conexion,$select);
+$rPublicacion = mysqli_fetch_array($rsPublicacion);
 
 ?>
 <?
@@ -66,8 +66,8 @@ function validar()
               <select class="form-control" name="tCodEstatus" id="tCodEstatus">
                   <option value="">Seleccione...</option>
                   <? $select = "SELECT * FROM CatEstatus WHERE tCodEstatus IN ('AC','EL')"; ?>
-                  <? $rsEstatus = mysql_query($select); ?>
-                  <? while($rEstatus = mysql_fetch_array($rsEstatus)) { ?>
+                  <? $rsEstatus = mysqli_query($conexion,$select); ?>
+                  <? while($rEstatus = mysqli_fetch_array($rsEstatus)) { ?>
                   <option value="<?=$rEstatus{'tCodEstatus'}?>" <?=(($rEstatus{'tCodEstatus'}==$rPublicacion{'tCodEstatus'}) ? 'selected="selected"' : '')?>><?=$rEstatus{'tNombre'}?></option>
                   <? } ?>
                </select>

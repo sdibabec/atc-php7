@@ -4,8 +4,8 @@
 
 session_start();
 $select = "SELECT * FROM CatClientes WHERE eCodCliente = ".$_GET['v1'];
-$rsCliente = mysql_query($select);
-$rCliente = mysql_fetch_array($rsCliente);
+$rsCliente = mysqli_query($conexion,$select);
+$rCliente = mysqli_fetch_array($rsCliente);
 ?>
 <div class="row">
                             <div class="col-lg-12">
@@ -69,9 +69,9 @@ $rCliente = mysql_fetch_array($rsCliente);
 											<?
                                             $i = 0;
 											$select = "	SELECT be.eCodEvento, be.fhFechaEvento, (SELECT COUNT(*) FROM RelEventosPaquetes WHERE eCodEvento = be.eCodEvento) as Conceptos, ce.tIcono FROM BitEventos be INNER JOIN CatEstatus ce ON ce.eCodEstatus = be.eCodEstatus WHERE be.eCodCliente = ".$_GET['eCodCliente']." ORDER BY be.eCodEvento DESC";
-											$rsPublicaciones = mysql_query($select);
+											$rsPublicaciones = mysqli_query($conexion,$select);
                                             
-											while($rPublicacion = mysql_fetch_array($rsPublicaciones))
+											while($rPublicacion = mysqli_fetch_array($rsPublicaciones))
 											{
 												?>
 											<tr>

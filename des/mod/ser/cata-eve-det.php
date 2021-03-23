@@ -5,8 +5,8 @@
 session_start();
 $bAll = $_SESSION['bAll'];
 $select = "SELECT be.*, (cc.tNombres + ' ' + cc.tApellidos) as tNombre FROM BitEventos be INNER JOIN CatClientes cc ON cc.eCodCliente = be.eCodCliente WHERE be.eCodEvento = ".$_GET['v1'];
-$rsPublicacion = mysql_query($select);
-$rPublicacion = mysql_fetch_array($rsPublicacion);
+$rsPublicacion = mysqli_query($conexion,$select);
+$rPublicacion = mysqli_fetch_array($rsPublicacion);
 
 $bIVA = $rPublicacion{'bIVA'} ? 1 : 0;
 
@@ -21,7 +21,7 @@ $select = "	SELECT
 														LEFT JOIN SisUsuarios su ON su.eCodUsuario = cc.eCodUsuario".
 												($bAll ? "" : " WHERE cc.eCodUsuario = ".$_SESSION['sessionAdmin']['eCodUsuario']).
 														" ORDER BY cc.eCodCliente ASC";
-$rsClientes = mysql_query($select);
+$rsClientes = mysqli_query($conexion,$select);
 
 ?>
 
@@ -41,7 +41,7 @@ $rsClientes = mysql_query($select);
                             <? if($rPublicacion{'eCodUsuarioCancelacion'}){ ?>
             <?
             $select = "	SELECT su.tNombre as Usuario, su.tApellidos as Apellidos FROM SisUsuarios su WHERe su.eCodUsuario = ".$rPublicacion{'eCodUsuarioCancelacion'};
-             $rUsuario = mysql_fetch_array(mysql_query($select));
+             $rUsuario = mysqli_fetch_array(mysqli_query($conexion,$select));
             ?>
            <div class="form-group">
               <label>Estatus</label>
@@ -60,7 +60,7 @@ $rsClientes = mysql_query($select);
               <label>Cliente</label>
               
                                                         <?
-     while($rPaquete = mysql_fetch_array($rsClientes))
+     while($rPaquete = mysqli_fetch_array($rsClientes))
 {
          ?>
                   <?=($rPublicacion{'eCodCliente'}==$rPaquete{'eCodCliente'}) ? $rPaquete{'tNombres'}.' '.$rPaquete{'tApellidos'}.' ('.$rPaquete{'tCorreo'}.')' : ''?>
@@ -110,9 +110,9 @@ $rsClientes = mysql_query($select);
 										<tbody>
 											<?
 											$select = "SELECT bt.eCodTransaccion, bt.eCodTipoPago, bt.eCodEvento, bt.fhFecha, bt.dMonto, ctp.tNombre FROM BitTransacciones bt INNER JOIN CatTiposPagos ctp ON ctp.eCodTipoPago = bt.eCodTipoPago WHERE bt.tCodEstatus = 'AC' AND bt.eCodEvento = ".$_GET['v1'];
-											$rsTransacciones = mysql_query($select);
+											$rsTransacciones = mysqli_query($conexion,$select);
 											$i = 1;
-											while($rTransaccion = mysql_fetch_array($rsTransacciones))
+											while($rTransaccion = mysqli_fetch_array($rsTransacciones))
 											{
 												?>
 											<tr>
@@ -178,9 +178,9 @@ $rsClientes = mysql_query($select);
                                                         FROM CatServicios cs
                                                         INNER JOIN RelEventosPaquetes rep ON rep.eCodServicio = cs.eCodServicio and rep.eCodTipo = 1
                                                         WHERE rep.eCodEvento = ".$_GET['v1'];
-											$rsPublicaciones = mysql_query($select);
+											$rsPublicaciones = mysqli_query($conexion,$select);
                                             
-											while($rPublicacion = mysql_fetch_array($rsPublicaciones))
+											while($rPublicacion = mysqli_fetch_array($rsPublicaciones))
 											{
 												?>
 											<tr id="paq<?=$i?>">
@@ -208,9 +208,9 @@ $rsClientes = mysql_query($select);
                                                         FROM CatInventario cs
                                                         INNER JOIN RelEventosPaquetes rep ON rep.eCodServicio = cs.eCodInventario and rep.eCodTipo = 2
                                                         WHERE rep.eCodEvento = ".$_GET['v1'];
-											$rsPublicaciones = mysql_query($select);
+											$rsPublicaciones = mysqli_query($conexion,$select);
                                             
-											while($rPublicacion = mysql_fetch_array($rsPublicaciones))
+											while($rPublicacion = mysqli_fetch_array($rsPublicaciones))
 											{
 												?>
 											<tr id="paq<?=$i?>">
@@ -237,9 +237,9 @@ $rsClientes = mysql_query($select);
                                                         FROM RelEventosExtras
                                                         WHERE eCodEvento = ".$_GET['v1'].
                                                 " ORDER BY bSuma ASC, tDescripcion DESC";
-											$rsPublicaciones = mysql_query($select);
+											$rsPublicaciones = mysqli_query($conexion,$select);
                                             
-											while($rPublicacion = mysql_fetch_array($rsPublicaciones))
+											while($rPublicacion = mysqli_fetch_array($rsPublicaciones))
 											{
 												?>
 											<tr id="ext<?=$i?>">

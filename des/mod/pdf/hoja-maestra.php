@@ -5,8 +5,8 @@ require_once("../../cls/cls-sistema.php");
 session_start();
 
 $select = "SELECT be.*, (cc.tNombres + ' ' + cc.tApellidos) as tNombre,su.tNombre as promotor FROM BitEventos be INNER JOIN CatClientes cc ON cc.eCodCliente = be.eCodCliente LEFT JOIN SisUsuarios su ON su.eCodUsuario = be.eCodUsuario WHERE be.eCodEvento = ".($_GET['v1'] ? $_GET['v1'] : $_GET['eCodEvento']);
-$rsCotizacion = mysql_query($select);
-$rCotizacion = mysql_fetch_array($rsCotizacion);
+$rsCotizacion = mysqli_query($conexion,$select);
+$rCotizacion = mysqli_fetch_array($rsCotizacion);
 
 $bIVA = $rCotizacion{'bIVA'} ? $rCotizacion{'bIVA'} : false;
 
@@ -21,8 +21,8 @@ $select = "	SELECT
 														
 														LEFT JOIN SisUsuarios su ON su.eCodUsuario = cc.eCodUsuario
                                                         WHERE cc.eCodCliente = ".$rCotizacion{'eCodCliente'};
-$rsClientes = mysql_query($select);
-$rCliente = mysql_fetch_array($rsClientes);
+$rsClientes = mysqli_query($conexion,$select);
+$rCliente = mysqli_fetch_array($rsClientes);
 
 $arrProductos = array();
 
@@ -37,9 +37,9 @@ $select = "	SELECT DISTINCT
              FROM CatServicios cs
              INNER JOIN RelEventosPaquetes rep ON rep.eCodServicio = cs.eCodServicio and rep.eCodTipo = 1
              WHERE rep.eCodEvento = ".$rCotizacion['eCodEvento'];
-$rsPaquetes = mysql_query($select);
+$rsPaquetes = mysqli_query($conexion,$select);
 $dTotalEvento = 0;
-while($rPaquete = mysql_fetch_array($rsPaquetes))
+while($rPaquete = mysqli_fetch_array($rsPaquetes))
 {
    $arrProductos[] = array(
    'prefijo'=>'PQ',
@@ -54,8 +54,8 @@ while($rPaquete = mysql_fetch_array($rsPaquetes))
     LEFT JOIN CatSubClasificacionesInventarios cst ON cst.eCodTipoInventario=cti.eCodTipoInventario
     INNER JOIN RelServiciosInventario rsi ON rsi.eCodInventario=ci.eCodInventario 
     WHERE rsi.eCodServicio = ".$rPaquete{'eCodServicio'}." ORDER BY cti.ePosicion ASC, cst.ePosicion ASC";
-    $rsDesglose = mysql_query($select);
-    while($rDesglose = mysql_fetch_array($rsDesglose))
+    $rsDesglose = mysqli_query($conexion,$select);
+    while($rDesglose = mysqli_fetch_array($rsDesglose))
     {
         $arrProductos[] = array(
    'prefijo'=>' ('.($rDesglose{'ePiezas'}*$eCantidad).')',
@@ -73,8 +73,8 @@ $select = "	SELECT DISTINCT
 FROM CatInventario cs
 INNER JOIN RelEventosPaquetes rep ON rep.eCodServicio = cs.eCodInventario and rep.eCodTipo = 2
 WHERE rep.eCodEvento = ".$rCotizacion['eCodEvento'];
-$rsInventario = mysql_query($select);
-while($rInventario = mysql_fetch_array($rsInventario))
+$rsInventario = mysqli_query($conexion,$select);
+while($rInventario = mysqli_fetch_array($rsInventario))
 {
    $arrProductos[] = array(
    'prefijo'=>'IN',
@@ -87,8 +87,8 @@ $select = "	SELECT *
           FROM RelEventosExtras
           WHERE eCodEvento = ".$_GET['eCodEvento'].
           " ORDER BY bSuma ASC, tDescripcion ASC";
-$rsExtras = mysql_query($select);
-while($rExtra = mysql_fetch_array($rsExtras))
+$rsExtras = mysqli_query($conexion,$select);
+while($rExtra = mysqli_fetch_array($rsExtras))
 {
  $arrProductos[] = array(
    'prefijo'=>'EX',
@@ -102,10 +102,10 @@ $dIVA = $dSubtotal * 0.16;
 $dTotal = $bIVA ? ($dSubtotal+$dIVA) : $dSubtotal;
 
 $select = "SELECT bt.eCodTransaccion, bt.eCodTipoPago, bt.eCodEvento, bt.fhFecha, bt.dMonto, ctp.tNombre FROM BitTransacciones bt INNER JOIN CatTiposPagos ctp ON ctp.eCodTipoPago = bt.eCodTipoPago WHERE bt.tCodEstatus = 'AC' AND bt.eCodEvento = ".$rCotizacion['eCodEvento'];
-$rsTransacciones = mysql_query($select);
+$rsTransacciones = mysqli_query($conexion,$select);
 $i = 1;
 $dPagado = 0;
-while($rTransaccion = mysql_fetch_array($rsTransacciones))
+while($rTransaccion = mysqli_fetch_array($rsTransacciones))
 { $dPagado = $dPagado + $rTransaccion{'dMonto'}; }
 
 $dRestante = $dTotal - $dPagado;

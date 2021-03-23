@@ -12,8 +12,8 @@ FROM
 	INNER JOIN CatTiposInventario cti
 WHERE ci.eCodInventario = ".$_GET['v1'];
 //echo $select;
-$rsPublicacion = mysql_query($select);
-$rPublicacion = mysql_fetch_array($rsPublicacion);
+$rsPublicacion = mysqli_query($conexion,$select);
+$rPublicacion = mysqli_fetch_array($rsPublicacion);
 
 ?>
 <!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js"></script>-->
@@ -131,8 +131,8 @@ var eStock = document.getElementById("eStock");
 			  <option value="">Seleccione...</option> 
 				  <?
 		$select = "SELECT * FROM CatTiposInventario order by tNombre ASC";
-		$rsTipos = mysql_query($select);
-		   while($rTipo = mysql_fetch_array($rsTipos))
+		$rsTipos = mysqli_query($conexion,$select);
+		   while($rTipo = mysqli_fetch_array($rsTipos))
 		   {
 			   ?>
 				  <option value="<?=$rTipo{'eCodTipoInventario'}?>" <?=($rTipo{'eCodTipoInventario'}==$rPublicacion{'eCodTipoInventario'}) ? 'selected' : ''?>><?=$rTipo{'tNombre'}?></option>
@@ -147,8 +147,8 @@ var eStock = document.getElementById("eStock");
 			  <option value="">Seleccione...</option> 
 				  <?
 		$select = "SELECT * FROM CatSubClasificacionesInventarios order by tNombre ASC";
-		$rsTipos = mysql_query($select);
-		   while($rTipo = mysql_fetch_array($rsTipos))
+		$rsTipos = mysqli_query($conexion,$select);
+		   while($rTipo = mysqli_fetch_array($rsTipos))
 		   {
 			   ?>
 				  <option value="<?=$rTipo{'eCodSubclasificacion'}?>" <?=($rTipo{'eCodSubclasificacion'}==$rPublicacion{'eCodSubclasificacion'}) ? 'selected' : ''?>><?=$rTipo{'tNombre'}?></option>

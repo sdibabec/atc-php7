@@ -78,7 +78,7 @@ if(!sizeof($errores))
 }
         //fwrite($pf,$insert."\n\n");
         //fclose($pf);
-        $rs = mysqli_query($conexion,$conexion,$insert);
+        $rs = mysqli_query($conexion,$insert);
 
         if(!$rs)
         {

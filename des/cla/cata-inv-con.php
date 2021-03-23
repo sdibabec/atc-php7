@@ -35,6 +35,7 @@ $eCodTipoInventario = $data->eCodTipoInventario ? $data->eCodTipoInventario : fa
 
 
 $eInicio = $data->eInicio ? (($data->eInicio * 10)-10) : 0;
+$ePagina = $data->eInicio ? $data->eInicio : 1;
 $eTermino = ($eInicio>0 ? $eInicio : 1) * 10;
 
 $eLimit = $data->eMaxRegistros ? $data->eMaxRegistros : 250;
@@ -128,7 +129,7 @@ switch($accion)
         
         $tHTML .=   '<tr>'.
                     '<td colspan="7" align="right">';
-        $tHTML .= $clNav->paginas($data->eInicio,$ePaginas);
+        $tHTML .= $clNav->paginas((int)$ePagina,(int)$ePaginas);
         $tHTML .=   '</td>';
         $tHTML .=   '</tr>';
         

@@ -21,7 +21,7 @@ class clNav
     {
         $select   = "SELECT tValor FROM SisVariables WHERE tNombre = 'tURL'";
         $rCFG     = mysqli_fetch_array(mysqli_query($this->conexion,$select));
-        return $rCFG{'tValor'};
+        return utf8_encode($rCFG{'tValor'});
     }
     
     public function generarUrl($seccion, $bServidor = true, $accion, $codigo)

@@ -2,8 +2,8 @@ Options +FollowSymlinks
 ReWriteEngine on
 ReWriteBase /
 
-# RewriteCond %{SERVER_PORT} 80
-# RewriteRule ^(.*)$ https://srm.sdibabec.com/$1 [R,L]
+ RewriteCond %{SERVER_PORT} 80
+ RewriteRule ^(.*)$ https://test.antroadomicilio.com/$1 [R,L]
 
 # adding cors
 Header add Access-Control-Allow-Origin "*"

@@ -339,8 +339,7 @@ class clNav
         
         $tHTML = '';
         
-        if((int)$maximo>1)
-        {
+        
             $tHTML .= '<nav>';
             $tHTML .= '<ul class="pagination">';
             
@@ -352,7 +351,7 @@ class clNav
             
             $tHTML .= '</ul>';
             $tHTML .= '</nav>';
-        }
+        
         
         return $tHTML;
         

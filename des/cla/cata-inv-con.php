@@ -125,14 +125,13 @@ switch($accion)
             //imprimimos
         }
         /* hacemos select */
-        if($ePaginas>1)
-        {
+        
         $tHTML .=   '<tr>'.
-                    '<td colspan="4" align="right">';
+                    '<td colspan="7" align="right">';
         $tHTML .= $clNav->paginas($data->eInicio,$ePaginas);
         $tHTML .=   '</td>';
         $tHTML .=   '</tr>';
-        }
+        
         $tHTML .= '</tbody>'.
             '</table>';
         break;
@@ -157,6 +156,6 @@ if(!sizeof($errores) && ($accion=="D" || $accion=="F"))
     }
 }
 
-echo json_encode(array("exito"=>((!sizeof($errores)) ? 1 : 0), 'errores'=>$errores,'registros'=>(int)mysqli_num_rows($rsConsulta),"consulta"=>$tHTML,"select"=>$select));
+echo json_encode(array("exito"=>((!sizeof($errores)) ? 1 : 0), 'errores'=>$errores,'registros'=>$eFilas,'paginas'=>$ePaginas,"consulta"=>$tHTML,"select"=>$select));
 
 ?>

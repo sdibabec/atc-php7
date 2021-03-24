@@ -111,13 +111,14 @@ switch($accion)
             //imprimimos
         }
         /* hacemos select */
-        
+        if($ePaginas>1)
+        {
         $tHTML .=   '<tr>'.
                     '<td colspan="5" align="center">';
         $tHTML .= $clNav->paginas((int)$ePagina,(int)$ePaginas);
         $tHTML .=   '</td>';
         $tHTML .=   '</tr>';
-        
+        }
         $tHTML .= '</tbody>'.
             '</table>';
         

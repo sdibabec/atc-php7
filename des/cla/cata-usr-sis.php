@@ -152,6 +152,6 @@ switch($accion)
      }
 }
 
-echo json_encode(array("exito"=>((!sizeof($errores)) ? 1 : 0), 'errores'=>$errores,'registros'=>(int)$eFilas),"consulta"=>$tHTML,"query"=>$select));
+echo json_encode(array("exito"=>((!sizeof($errores)) ? 1 : 0), 'errores'=>$errores,'registros'=>(int)$eFilas,"consulta"=>$tHTML,"query"=>$select));
 
 ?>

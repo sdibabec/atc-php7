@@ -32,9 +32,9 @@ $fhFecha2 = $data->fhFechaTermino ? explode("/",$data->fhFechaTermino) : false;
 $fhFechaInicio = "'".$fhFecha[2]."-".$fhFecha[1]."-".$fhFecha[0]."'";
 $fhFechaTermino = $fhFecha2 ? "'".$fhFecha2[2]."-".$fhFecha2[1]."-".$fhFecha2[0]."'" : "'".$fhFechaInicio."'";
 
-$eInicio = (int)$data->eInicio>0 ? (($data->eInicio * 15)-15) : 0;
+$eInicio = (int)$data->eInicio>0 ? (($data->eInicio * 20)-20) : 0;
 //$eTermino = ($eInicio>0 ? $eInicio : 1) + 15;
-$eTermino = 15;
+$eTermino = 20;
 
 $ePagina = $data->eInicio ? $data->eInicio : 1;
 
@@ -42,8 +42,7 @@ $eLimit = $data->eMaxRegistros ? $data->eMaxRegistros : 250;
 $bOrden = $data->rOrden;
 $rdOrden = $data->rdOrden ? $data->rdOrden : 'eCodUsuario';
 
-$eInicio = $data->eInicio ? (($data->eInicio * 15)-15) : 0;
-$eTermino = ($eInicio>0 ? $eInicio : 1) * 15;
+
 
 $bAll = $_SESSION['bAll'];
 $bDelete = $_SESSION['bDelete'];
@@ -91,7 +90,7 @@ switch($accion)
         
         $eFilas = mysqli_num_rows(mysqli_query($conexion,$select1));
         
-        $ePaginas = round($eFilas / 15);
+        $ePaginas = round($eFilas / 20);
         
         $select = "SELECT * FROM ($select1) N0 ORDER BY $rdOrden $bOrden LIMIT $eInicio, $eTermino";
         

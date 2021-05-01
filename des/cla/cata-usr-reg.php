@@ -59,7 +59,7 @@ if(!sizeof($errores))
 {
         if(!$eCodUsuario)
         {
-            $insert = "INSERT INTO SisUsuarios (tNombre, tApellidos, tCorreo, tPasswordAcceso, tPasswordOperaciones,  eCodEstatus, eCodPerfil, fhFechaCreacion,bAll, tCodUsuario,tCodPadre) VALUES ($tNombre, $tApellidos, $tCorreo, $tPasswordAcceso, $tPasswordOperaciones, $eCodEstatus, $eCodPerfil, $fhFechaCreacion,$bAll, $tUUID,$tCodPadre)";
+            $insert = "INSERT INTO SisUsuarios (tNombre, tApellidos, tCorreo, tPasswordAcceso, tPasswordOperaciones,  eCodEstatus, eCodPerfil, fhFechaCreacion,bAll) VALUES ($tNombre, $tApellidos, $tCorreo, $tPasswordAcceso, $tPasswordOperaciones, $eCodEstatus, $eCodPerfil, $fhFechaCreacion,$bAll)";
         }
         else
         {
@@ -75,7 +75,7 @@ if(!sizeof($errores))
             WHERE
             eCodUsuario = $eCodUsuario";
         }
-}
+        
         //fwrite($pf,$insert."\n\n");
         //fclose($pf);
         $rs = mysqli_query($conexion,$insert);
@@ -84,6 +84,9 @@ if(!sizeof($errores))
         {
             $errores[] = 'Error de insercion/actualizacion del usuario';
         }
+        
+}
+        
 
 echo json_encode(array("exito"=>((!sizeof($errores)) ? 1 : 0), 'errores'=>$errores));
 

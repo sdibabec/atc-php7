@@ -311,7 +311,7 @@ else
                                            $fichero = './des/mod/'.$_GET['tDirectorio'].'/'.$_GET['tCodSeccion'].'.php';
             
             mysqli_query($conexion,"INSERT INTO SisUsuariosSeccionesAccesos (eCodUsuario, tCodSeccion,  fhFecha) VALUES (".$_SESSION['sessionAdmin']['eCodUsuario'].",'".$_GET['tCodSeccion']."','".date('Y-m-d H:i:s')."')");
-			//echo ($fichero);
+			//print ($fichero);
 			include($fichero);
                                            ?>
                                            <? //$clSistema->cargarSeccion(); ?>

@@ -24,7 +24,7 @@ class clNav
         return utf8_encode($rCFG{'tValor'});
     }
     
-    public function generarUrl($seccion, $bServidor = true, $accion, $codigo)
+    public function generarUrl($seccion, $bServidor = true, $accion, $codigo = false)
     {
         $base     = explode('-', $seccion);
         $tAccion  = $base[2];

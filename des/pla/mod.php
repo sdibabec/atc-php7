@@ -13,7 +13,7 @@ if (isset($_SERVER{'HTTP_ORIGIN'})) {
 
 require_once("../cls/cls-sistema.php");
 require_once("../cls/cls-nav.php");
-include("../inc/cot-clc.php");
+require_once("../inc/cot-clc.php");
 
 $clSis = new clSis();
 $clNav = new clNav();

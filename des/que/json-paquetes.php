@@ -2,7 +2,7 @@
 
 
 require_once("../cls/cls-sistema.php");
-
+require_once("../inc/cot-clc.php");
 
 
 
@@ -37,7 +37,7 @@ if($_POST['search'] || $_GET['search']){
         $response[] = array(
                             "value"=>$row{'eCodServicio'},
                             "label"=>$row{'tNombre'}.' Servicio de '.$row{'eHoras'}.' horas',
-                            "maxpiezas"=>calcularPaquete($row{'eCodServicio'},$fhFecha),
+                            "maxpiezas"=>calcularPaquete($conexion,$row{'eCodServicio'},$fhFecha),
                             "precioventa"=>$row{'dPrecioVenta'},
                             "horaextra"=>$row{'dHoraExtra'}
                             );

@@ -1,12 +1,19 @@
 <?php
-require_once("../../cnx/swgc-mysql.php");
 require_once("../../cls/cls-sistema.php");
+require_once("../../cls/cls-nav.php");
+
+$clSistema = new clSis();
+$clNav = new clNav();
+
+$conexion = $clSistema->conectarBD();
 
 session_start();
 
 $select = "SELECT be.*, (cc.tNombres + ' ' + cc.tApellidos) as tNombre,su.tNombre as promotor FROM BitEventos be INNER JOIN CatClientes cc ON cc.eCodCliente = be.eCodCliente LEFT JOIN SisUsuarios su ON su.eCodUsuario = be.eCodUsuario WHERE be.eCodEvento = ".($_GET['v1'] ? $_GET['v1'] : $_GET['eCodEvento']);
 $rsCotizacion = mysqli_query($conexion,$select);
 $rCotizacion = mysqli_fetch_array($rsCotizacion);
+
+//print mysqli_error($conexion);
 
 $bIVA = $rCotizacion{'bIVA'} ? $rCotizacion{'bIVA'} : false;
 

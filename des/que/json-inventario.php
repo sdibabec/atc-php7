@@ -1,7 +1,7 @@
 <?php
 
 require_once("../cls/cls-sistema.php");
-
+require_once("../inc/cot-clc.php");
 
 
 
@@ -46,7 +46,7 @@ if($_POST['search'] || $_GET['search']){
         $response[] = array(
                             "value"=>$row{'eCodInventario'},
                             "label"=>$row{'tNombre'},
-                            "maxpiezas"=>calcularInventario($row{'eCodInventario'},$fhFecha),
+                            "maxpiezas"=>calcularInventario($conexion,$row{'eCodInventario'},$fhFecha),
                             "precioventa"=>$row{'dPrecioVenta'}
                             );
     }

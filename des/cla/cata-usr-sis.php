@@ -82,7 +82,7 @@ switch($accion)
 															SisUsuarios cc
 														LEFT JOIN CatEstatus ce ON cc.eCodEstatus = ce.eCodEstatus 
 														LEFT JOIN SisPerfiles cp ON cp.eCodPerfil = cc.eCodPerfil".
-										" WHERE 1=1 ".
+										" WHERE cc.eCodEstatus IN(1,3) ".
 										($_SESSION['sessionAdmin']['bAll'] ? "" : " AND cc.eCodEstatus <>7 ").
 										($_SESSION['sessionAdmin']['bAll'] ? "" : " AND cc.eCodPerfil > 2 ").
 										($eCodUsuario ?  " AND cc.eCodUsuario =  ".$eCodUsuario : "").

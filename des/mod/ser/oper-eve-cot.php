@@ -199,7 +199,7 @@ $horas[] = array('23:30','23:30 - 04:30');
                                                 <input type="hidden" name="paquete[<?=$i;?>][eCodServicio]" id="paquete<?=$i;?>-eCodServicio" value="<?=$rProducto{'eCodServicio'}?>">
                                                 <input type="hidden" name="paquete[<?=$i;?>][dImporte]" id="paquete<?=$i;?>-dImporte" value="<?=$rProducto{'dPrecioVenta'}?>">
                                                 <input type="text" name="paquete[<?=$i;?>][ePiezas]" id="paquete<?=$i;?>-ePiezas" value="<?=$rProducto{'eCantidad'}?>" class="form-control" onblur="validarPaquete(<?=$i;?>)">
-                                                <input type="hidden" name="paquete[<?=$i;?>][eMaxPiezas]" id="paquete<?=$i;?>-eMaxPiezas" value="<?=calcularPaquete($rProducto{'eCodServicio'},$rPublicacion{'fhFechaEvento'});?>" onkeyup="validarPiezas('paquete<?=$i;?>');">
+                                                <input type="hidden" name="paquete[<?=$i;?>][eMaxPiezas]" id="paquete<?=$i;?>-eMaxPiezas" value="<?=calcularPaquete($conexion,$rProducto{'eCodServicio'},$rPublicacion{'fhFechaEvento'});?>" onkeyup="validarPiezas('paquete<?=$i;?>');">
                                                 <input type="hidden" name="paquete[<?=$i;?>][dHoraExtra]" id="paquete<?=$i;?>-dHoraExtra" value="<?=($rProducto{'dHoraExtra'});?>">
                                                 </td>
                                                 <td>
@@ -226,7 +226,7 @@ $horas[] = array('23:30','23:30 - 04:30');
                                                 <input type="hidden" name="paquete[<?=$i;?>][eCodServicio]" id="paquete<?=$i;?>-eCodServicio" value="<?=$rProducto{'eCodServicio'}?>">
                                                 <input type="hidden" name="paquete[<?=$i;?>][dImporte]" id="paquete<?=$i;?>-dImporte" value="<?=$rProducto{'dPrecioVenta'}?>">
                                                 <input type="text" name="paquete[<?=$i;?>][ePiezas]" id="paquete<?=$i;?>-ePiezas" value="<?=$rProducto{'eCantidad'}?>" class="form-control" onblur="validarPaquete(<?=$i;?>)" onkeyup="validarPiezas('paquete<?=$i;?>');">
-                                                <input type="hidden" name="paquete[<?=$i;?>][eMaxPiezas]" id="paquete<?=$i;?>-eMaxPiezas" value="<?=calcularPaquete($rProducto{'eCodServicio'},$rPublicacion{'fhFechaEvento'});?>">
+                                                <input type="hidden" name="paquete[<?=$i;?>][eMaxPiezas]" id="paquete<?=$i;?>-eMaxPiezas" value="<?=calcularPaquete($conexion,$rProducto{'eCodServicio'},$rPublicacion{'fhFechaEvento'});?>">
                                                 <input type="hidden" name="paquete[<?=$i;?>][dHoraExtra]" id="paquete<?=$i;?>-dHoraExtra" value="">
                                                 </td>
                                                 <td>
@@ -285,7 +285,7 @@ $horas[] = array('23:30','23:30 - 04:30');
                                                 <input type="hidden" name="inventario[<?=$i;?>][eCodInventario]" id="inventario<?=$i;?>-eCodInventario" value="<?=$rProducto{'eCodServicio'}?>">
                                                 <input type="hidden" name="inventario[<?=$i;?>][dImporte]" id="inventario<?=$i;?>-dImporte" value="<?=$rProducto{'dPrecioVenta'}?>">
                                                 <input type="text" name="inventario[<?=$i;?>][ePiezas]" id="inventario<?=$i;?>-ePiezas" value="<?=$rProducto{'eCantidad'}?>" class="form-control">
-                                                <input type="hidden" name="inventario[<?=$i;?>][eMaxPiezas]" id="inventario<?=$i;?>-eMaxPiezas" value="<?=calcularInventario($rProducto{'eCodServicio'},$rPublicacion{'fhFechaEvento'});?>" onblur="validarInventario(<?=$i;?>)" onkeyup="validarPiezas('inventario<?=$i;?>');">
+                                                <input type="hidden" name="inventario[<?=$i;?>][eMaxPiezas]" id="inventario<?=$i;?>-eMaxPiezas" value="<?=calcularInventario($conexion,$rProducto{'eCodServicio'},$rPublicacion{'fhFechaEvento'});?>" onblur="validarInventario(<?=$i;?>)" onkeyup="validarPiezas('inventario<?=$i;?>');">
                                                 </td>
                                                 <td>
                                                 <input type="text" name="inventario[<?=$i;?>][dMonto]" class="form-control" id="inventario<?=$i;?>-dMonto" value="<?=number_format($rProducto{'dMonto'},2)?>" readonly>

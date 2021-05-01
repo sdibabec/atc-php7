@@ -1,6 +1,11 @@
 <?php
-require_once("../../cnx/swgc-mysql.php");
 require_once("../../cls/cls-sistema.php");
+require_once("../../cls/cls-nav.php");
+
+$clSistema = new clSis();
+$clNav = new clNav();
+
+$conexion = $clSistema->conectarBD();
 
 session_start();
 
@@ -137,7 +142,7 @@ $dHoraExtra = 0;
                     <table>
                         <tr>
                             <td class="title">
-                                <img src="../../images/icon/logo.png" style="max-width:100px;">
+                                <img src="<?=$clNav->obtenerURL();?>assets/images/avatar-4.png" style="max-width:100px;">
                             </td>
                             
                             <td>
